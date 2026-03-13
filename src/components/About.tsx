@@ -35,8 +35,8 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
            <div className="lg:col-span-5 relative group">
               <div className="glass-card h-full p-12 flex flex-col justify-center border-emerald-500/20 bg-black/40 backdrop-blur-xl group-hover:border-emerald-500/40 transition-colors duration-500">
-                  <h3 className="text-3xl font-semibold mb-2 text-white">Goan Native</h3>
-                  <p className="text-emerald-400 tracking-widest uppercase text-sm font-semibold mb-8">Age 25</p>
+                  <h3 className="text-3xl font-semibold mb-2 text-white">Nandann Shetye</h3>
+                  <p className="text-emerald-400 tracking-widest uppercase text-sm font-semibold mb-8">Goan Native • Age 25</p>
                   <p className="text-gray-400">Multidisciplinary creator working at the intersection of Artificial Intelligence, digital design, and business strategy.</p>
               </div>
            </div>
