@@ -16,10 +16,10 @@ const alexBrush = Alex_Brush({
 });
 
 export const metadata: Metadata = {
-  title: "Nandann Shetye | Personal Portfolio",
+  title: "Nandann Shetye | AI Strategist | Business Coach | Digital Entrepreneur",
   description: "AI Strategist • Digital Systems Architect • Business Coach",
   openGraph: {
-    title: "Nandann Shetye | Personal Portfolio",
+    title: "Nandann Shetye | AI Strategist | Business Coach | Digital Entrepreneur",
     description: "I turn ideas into automated digital systems.",
     url: "https://portfolio-of-nandann.vercel.app",
     siteName: "Nandann Shetye Portfolio",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nandann Shetye | Personal Portfolio",
+    title: "Nandann Shetye | AI Strategist | Business Coach | Digital Entrepreneur",
     description: "AI Strategist • Digital Systems Architect • Business Coach",
     images: ["/opengraph-image.png"],
   },
