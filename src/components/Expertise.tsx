@@ -31,7 +31,7 @@ const expertiseList = [
 
 export default function Expertise() {
   return (
-    <section className="relative z-20 py-32 px-6 md:px-12 border-t border-white/5 backdrop-blur-sm bg-black/40">
+    <section className="relative z-20 py-32 px-6 md:px-12 border-t border-white/5">
       <div className="max-w-7xl mx-auto">
         
         {/* Professional Identity */}

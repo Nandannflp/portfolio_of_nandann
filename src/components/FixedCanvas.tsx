@@ -106,11 +106,13 @@ export default function FixedCanvas() {
     <div className="fixed inset-0 w-full h-full z-0 pointer-events-none bg-black">
       <canvas
         ref={canvasRef}
-        className="w-full h-full object-cover opacity-90 transition-opacity duration-1000"
+        className="w-full h-full object-cover opacity-100 transition-opacity duration-1000"
       />
+      {/* Global consistent blur layer */}
+      <div className="absolute inset-0 backdrop-blur-[6px] pointer-events-none"></div>
       {/* Vigentte and gradient overlay to ensure text readability globally */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.5)_100%)] pointer-events-none"></div>
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/30 to-[#0a0a0a]/90 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.3)_100%)] pointer-events-none"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-[#0a0a0a]/70 pointer-events-none"></div>
     </div>
   );
 }

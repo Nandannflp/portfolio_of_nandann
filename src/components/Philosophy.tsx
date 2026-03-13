@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Philosophy() {
   return (
-    <section className="relative z-20 py-32 px-6 md:px-12 border-t border-white/5 overflow-hidden backdrop-blur-sm bg-black/40">
+    <section className="relative z-20 py-32 px-6 md:px-12 border-t border-white/5 overflow-hidden">
       
       {/* Background glow lines */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl h-[600px] bg-gradient-to-r from-emerald-500/20 to-cyan-500/10 rounded-[100%] blur-[120px] pointer-events-none"></div>

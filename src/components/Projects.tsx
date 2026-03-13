@@ -15,7 +15,7 @@ const builds = [
 
 export default function Projects() {
   return (
-    <section className="relative z-20 py-32 px-6 md:px-12 border-t border-white/5 backdrop-blur-sm bg-black/50">
+    <section className="relative z-20 py-32 px-6 md:px-12 border-t border-white/5">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 gap-8">
           <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-white border-l-4 border-cyan-500 pl-6">
