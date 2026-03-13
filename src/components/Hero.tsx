@@ -14,7 +14,7 @@ export default function Hero() {
         >
           <div className="inline-block glass-card px-4 py-2 border-emerald-500/30 bg-emerald-500/10 mb-6">
             <span className="text-emerald-400 text-sm md:text-base font-medium tracking-widest uppercase">
-              Nandann Shetye • Goan Native • Age 25
+              Goan Native • Age 25
             </span>
           </div>
           
