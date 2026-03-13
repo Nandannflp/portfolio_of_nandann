@@ -1,4 +1,5 @@
 import FixedCanvas from "@/components/FixedCanvas";
+import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Expertise from "@/components/Expertise";
@@ -8,6 +9,7 @@ import Projects from "@/components/Projects";
 export default function Home() {
   return (
     <main className="relative flex flex-col min-h-screen bg-black" suppressHydrationWarning={true}>
+      <Header />
       {/* 
         FixedCanvas acts as the absolute background for the entire page, 
         tracking window scroll to scrub the images.
