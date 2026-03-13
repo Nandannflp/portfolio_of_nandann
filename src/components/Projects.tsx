@@ -41,6 +41,48 @@ export default function Projects() {
           </div>
         </div>
         
+        {/* Masterpiece Featured Project */}
+        <a 
+          href="https://achivcreations.lovable.app/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="block mb-12"
+        >
+          <div className="glass-card group relative p-10 md:p-16 overflow-hidden transition-all duration-700 border-emerald-500/20 bg-black/50 hover:-translate-y-2 hover:border-emerald-500/50 hover:bg-black/80 hover:shadow-[0_0_50px_rgba(16,185,129,0.2)]">
+            
+            {/* Animated Glow Background */}
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/0 via-emerald-500/5 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0"></div>
+            
+            <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+              <div className="space-y-4 max-w-2xl">
+                <div className="inline-flex items-center space-x-2 bg-emerald-500/10 border border-emerald-500/20 px-4 py-1.5 rounded-full">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <span className="text-emerald-400 text-xs md:text-sm font-bold tracking-[0.2em] uppercase">
+                    Masterpiece Project
+                  </span>
+                </div>
+                
+                <h3 className="text-3xl md:text-5xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-emerald-200 transition-all duration-500 leading-tight">
+                  Start your career journey in just 3 days!
+                </h3>
+                
+                <p className="text-gray-400 text-lg md:text-xl font-light">
+                  A comprehensive, high-converting digital ecosystem built to accelerate professional growth and visibility.
+                </p>
+              </div>
+              
+              <div className="flex-shrink-0">
+                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border border-white/10 flex items-center justify-center bg-white/5 group-hover:bg-emerald-500/20 group-hover:border-emerald-500/50 transition-all duration-500 group-hover:rotate-45">
+                  <svg xmlns="http://www.w3.org/polaris/2000/svg" className="h-8 w-8 text-white group-hover:text-emerald-400 transition-colors duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        {/* Regular Builds Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {builds.map((title, i) => (
             <div 
