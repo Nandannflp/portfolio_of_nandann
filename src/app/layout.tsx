@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Inter, Alex_Brush } from "next/font/google";
+import { Alex_Brush, Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
 const inter = Inter({
@@ -30,6 +31,7 @@ export default function RootLayout({
         suppressHydrationWarning={true}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );
