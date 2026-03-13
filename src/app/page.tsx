@@ -1,3 +1,4 @@
+import FixedCanvas from "@/components/FixedCanvas";
 import SidebarName from "@/components/SidebarName";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
