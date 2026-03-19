@@ -107,11 +107,11 @@ export default function FixedCanvas() {
         ref={canvasRef}
         className="w-full h-full object-cover opacity-100 transition-opacity duration-700"
       />
-      {/* Global consistent blur layer */}
-      <div className="absolute inset-0 backdrop-blur-[8px] pointer-events-none"></div>
-      {/* Vignette and gradient overlay to ensure text readability globally */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.15)_100%)] pointer-events-none"></div>
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/5 to-[#0a0a0a]/40 pointer-events-none"></div>
+      {/* Lightweight static overlays — NO backdrop-blur to avoid GPU compositing lag */}
+      <div className="absolute inset-0 bg-black/20 pointer-events-none"></div>
+      {/* Vignette overlay */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.25)_100%)] pointer-events-none"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-[#0a0a0a]/50 pointer-events-none"></div>
     </div>
   );
 }
