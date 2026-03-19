@@ -9,11 +9,23 @@ import { ArrowRight } from "lucide-react";
 import { useUser } from "@/context/UserContext";
 
 export default function SplashScreen() {
-  const [phase, setPhase] = useState<'intro' | 'question' | 'done'>('intro');
+  const [phase, setPhase] = useState<'intro' | 'question' | 'greeting' | 'hereme' | 'done'>('intro');
   const [inputValue, setInputValue] = useState("");
-  const { setUserName } = useUser();
+  const { setUserName, userName } = useUser();
 
   const show = phase !== "done";
+
+  // Auto-progress conversational phases
+  useEffect(() => {
+    if (phase === 'greeting') {
+      const timer = setTimeout(() => setPhase('hereme'), 2000);
+      return () => clearTimeout(timer);
+    }
+    if (phase === 'hereme') {
+      const timer = setTimeout(() => setPhase('done'), 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [phase]);
 
   // We optionally disable body scrolling while splash screen is active
   useEffect(() => {
@@ -28,7 +40,7 @@ export default function SplashScreen() {
   const handleSubmit = () => {
     if (inputValue.trim()) {
       setUserName(inputValue.trim());
-      setPhase("done");
+      setPhase("greeting");
     }
   };
 
@@ -36,10 +48,10 @@ export default function SplashScreen() {
     <AnimatePresence>
       {show && (
         <motion.div
-          initial={{ y: 0 }}
+          initial={{ opacity: 1 }}
           exit={{ 
-            y: "-100%", 
-            transition: { duration: 1, ease: [0.76, 0, 0.24, 1] } 
+            opacity: 0, 
+            transition: { duration: 1.5, ease: "easeInOut" } 
           }}
           className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-black px-6"
         >
@@ -68,6 +80,9 @@ export default function SplashScreen() {
             {phase === "question" && (
               <motion.div
                 key="question"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0, transition: { duration: 0.5 } }}
                 className="flex flex-col items-center justify-center w-full max-w-md space-y-12"
               >
                 <BlurFade delay={0.2} inView>
@@ -96,6 +111,38 @@ export default function SplashScreen() {
                       <ArrowRight className="w-6 h-6 transition-transform group-hover:translate-x-1" />
                     </button>
                   </div>
+                </BlurFade>
+              </motion.div>
+            )}
+
+            {phase === "greeting" && (
+              <motion.div
+                key="greeting"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0, transition: { duration: 0.8 } }}
+                className="text-center"
+              >
+                <BlurFade delay={0.1} inView>
+                   <h2 className="text-4xl md:text-7xl font-bold tracking-tighter text-white">
+                     Hi 👋🏻 <span className="text-emerald-400">{inputValue}</span>
+                   </h2>
+                </BlurFade>
+              </motion.div>
+            )}
+
+            {phase === "hereme" && (
+              <motion.div
+                key="hereme"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0, transition: { duration: 0.8 } }}
+                className="text-center"
+              >
+                <BlurFade delay={0.1} inView>
+                   <h2 className="text-4xl md:text-7xl font-bold tracking-tighter text-white">
+                     Here is Mee
+                   </h2>
                 </BlurFade>
               </motion.div>
             )}
