@@ -32,30 +32,20 @@ export default function About() {
         </div>
 
         {/* About Me Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-           <div className="lg:col-span-5 relative group">
-              <div className="glass-card h-full p-12 flex flex-col justify-center border-emerald-500/20 bg-black/40 backdrop-blur-xl group-hover:border-emerald-500/40 transition-colors duration-500">
-                  <h3 className="text-3xl font-semibold mb-2 text-white">Nandann Shetye</h3>
-                  <p className="text-emerald-400 tracking-widest uppercase text-sm font-semibold mb-8">Goan Native &bull; Age 25</p>
-                  <p className="text-gray-400">Multidisciplinary creator working at the intersection of Artificial Intelligence, digital design, and business strategy.</p>
-              </div>
-           </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="glass-card p-8 bg-black/30 hover:bg-white/[0.05] transition-colors duration-300 border-white/5 h-full flex flex-col justify-center">
+            <h4 className="text-xl font-medium text-white mb-3">Scientific Foundation</h4>
+            <p className="text-gray-400 leading-relaxed">
+              My academic background includes a Master&apos;s Degree in Physics, which trained me to think in terms of systems, structures, and problem solving &mdash; a mindset that now powers the way I design digital businesses and AI-driven workflows.
+            </p>
+          </div>
 
-           <div className="lg:col-span-7 space-y-6">
-              <div className="glass-card p-8 bg-black/30 backdrop-blur-md hover:bg-white/[0.05] transition-colors duration-300 border-white/5">
-                <h4 className="text-xl font-medium text-white mb-3">Scientific Foundation</h4>
-                <p className="text-gray-400 leading-relaxed">
-                  My academic background includes a Master&apos;s Degree in Physics, which trained me to think in terms of systems, structures, and problem solving &mdash; a mindset that now powers the way I design digital businesses and AI-driven workflows.
-                </p>
-              </div>
-
-              <div className="glass-card p-8 bg-black/30 backdrop-blur-md hover:bg-white/[0.05] transition-colors duration-300 border-white/5">
-                <h4 className="text-xl font-medium text-white mb-3">Creative Execution</h4>
-                <p className="text-gray-400 leading-relaxed">
-                  Driven by curiosity, I combine scientific thinking with creative execution to build modern digital solutions. Today, I focus on helping individuals and brands build smarter digital ecosystems using modern tools.
-                </p>
-              </div>
-           </div>
+          <div className="glass-card p-8 bg-black/30 hover:bg-white/[0.05] transition-colors duration-300 border-white/5 h-full flex flex-col justify-center">
+            <h4 className="text-xl font-medium text-white mb-3">Creative Execution</h4>
+            <p className="text-gray-400 leading-relaxed">
+              Driven by curiosity, I combine scientific thinking with creative execution to build modern digital solutions. Today, I focus on helping individuals and brands build smarter digital ecosystems using modern tools.
+            </p>
+          </div>
         </div>
       </div>
     </section>
