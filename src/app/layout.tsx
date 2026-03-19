@@ -3,6 +3,7 @@ import { Alex_Brush, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
+import SplashScreen from "@/components/SplashScreen";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -64,6 +65,7 @@ export default function RootLayout({
         className={`${inter.variable} ${alexBrush.variable} font-sans antialiased bg-[#121212] text-white min-h-screen selection:bg-white/30`}
         suppressHydrationWarning={true}
       >
+        <SplashScreen />
         {children}
         <Analytics />
         <SpeedInsights />
