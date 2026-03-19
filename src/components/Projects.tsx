@@ -20,7 +20,7 @@ export default function Projects() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 gap-8">
           <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-white border-l-4 border-cyan-500 pl-6">
             Work and <span className="font-alex-brush text-cyan-400 font-normal tracking-normal text-6xl md:text-8xl lg:text-9xl px-1">projects</span>
-            <span className="block text-2xl md:text-3xl text-gray-400 uppercase tracking-widest mt-4">by Nandann Shetye</span>
+            <span className="block text-2xl md:text-3xl text-gray-400 uppercase tracking-widest mt-4">selected work</span>
           </h2>
           
           <div className="flex items-center gap-4">

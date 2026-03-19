@@ -39,7 +39,7 @@ export default function Expertise() {
           <h2 className="text-3xl md:text-5xl font-bold mb-16 tracking-tight text-white border-l-4 border-emerald-500 pl-6 leading-tight">
             AI systems, automation <br className="hidden md:block" />
             <span className="font-alex-brush text-gray-400 font-normal tracking-normal text-5xl md:text-6xl lg:text-7xl px-1">& funnel strategies</span> <br className="hidden md:block" />
-            <span className="text-xl md:text-2xl text-gray-400 uppercase tracking-widest mt-2 block">by Nandann Shetye</span>
+            <span className="text-xl md:text-2xl text-gray-400 uppercase tracking-widest mt-2 block">what I do best</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {identities.map((item, idx) => (

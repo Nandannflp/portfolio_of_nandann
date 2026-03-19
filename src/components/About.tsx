@@ -16,10 +16,10 @@ export default function About() {
               AI-powered businesses.
             </h2>
             <p className="text-xl md:text-2xl text-gray-300 font-light leading-relaxed">
-              I’m Nandann Shetye, a Business Coach and AI Strategist helping creators and entrepreneurs build scalable digital businesses using AI systems and automation.
+              I help creators and entrepreneurs build scalable digital businesses using AI systems, automation, and smart growth strategies &mdash; so they can focus on what they do best.
             </p>
             <p className="text-lg text-gray-400 leading-relaxed">
-              As Nandann Shetye, my focus is on designing simple but powerful systems that turn ideas into income without burnout.
+              My focus is on designing simple but powerful systems that turn ideas into income &mdash; without the burnout. From AI-powered tools to high-converting funnels, I build the engine so you can drive.
             </p>
           </div>
           
@@ -36,7 +36,7 @@ export default function About() {
            <div className="lg:col-span-5 relative group">
               <div className="glass-card h-full p-12 flex flex-col justify-center border-emerald-500/20 bg-black/40 backdrop-blur-xl group-hover:border-emerald-500/40 transition-colors duration-500">
                   <h3 className="text-3xl font-semibold mb-2 text-white">Nandann Shetye</h3>
-                  <p className="text-emerald-400 tracking-widest uppercase text-sm font-semibold mb-8">Goan Native • Age 25</p>
+                  <p className="text-emerald-400 tracking-widest uppercase text-sm font-semibold mb-8">Goan Native &bull; Age 25</p>
                   <p className="text-gray-400">Multidisciplinary creator working at the intersection of Artificial Intelligence, digital design, and business strategy.</p>
               </div>
            </div>
@@ -45,7 +45,7 @@ export default function About() {
               <div className="glass-card p-8 bg-black/30 backdrop-blur-md hover:bg-white/[0.05] transition-colors duration-300 border-white/5">
                 <h4 className="text-xl font-medium text-white mb-3">Scientific Foundation</h4>
                 <p className="text-gray-400 leading-relaxed">
-                  My academic background includes a Master’s Degree in Physics, which trained me to think in terms of systems, structures, and problem solving — a mindset that now powers the way I design digital businesses and AI-driven workflows.
+                  My academic background includes a Master&apos;s Degree in Physics, which trained me to think in terms of systems, structures, and problem solving &mdash; a mindset that now powers the way I design digital businesses and AI-driven workflows.
                 </p>
               </div>
 
