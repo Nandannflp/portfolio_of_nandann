@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import SplashScreen from "@/components/SplashScreen";
+import { UserProvider } from "@/context/UserContext";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -65,8 +66,10 @@ export default function RootLayout({
         className={`${inter.variable} ${alexBrush.variable} font-sans antialiased bg-[#121212] text-white min-h-screen selection:bg-white/30`}
         suppressHydrationWarning={true}
       >
-        <SplashScreen />
-        {children}
+        <UserProvider>
+          <SplashScreen />
+          {children}
+        </UserProvider>
         <Analytics />
         <SpeedInsights />
       </body>
