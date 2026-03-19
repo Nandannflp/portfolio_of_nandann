@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
+import SocialIcons from '@/components/ui/social-icon';
 
 const builds = [
   "AI-powered websites",
@@ -23,23 +23,7 @@ export default function Projects() {
             <span className="block text-2xl md:text-3xl text-gray-400 uppercase tracking-widest mt-4">selected work</span>
           </h2>
           
-          <div className="flex items-center gap-4">
-            <a href="https://open.spotify.com/artist/5BhtyA8oT2cbYiIkoSZjHE?si=-Wf6MKUYRIuvq9hk4qmZgg" target="_blank" rel="noopener noreferrer" className="block relative w-12 h-12 hover:-translate-y-2 hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_15px_rgba(34,197,94,0.4)]">
-               <Image src="/social/spotify_new.png" alt="Spotify" fill className="object-contain" />
-            </a>
-            <a href="https://music.apple.com/us/artist/n-sparxz/1834647878" target="_blank" rel="noopener noreferrer" className="block relative w-12 h-12 hover:-translate-y-2 hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_15px_rgba(239,68,68,0.4)]">
-               <Image src="/social/apple_music_new.png" alt="Apple Music" fill className="object-contain" />
-            </a>
-            <a href="https://www.instagram.com/nandann_shetye/" target="_blank" rel="noopener noreferrer" className="block relative w-12 h-12 hover:-translate-y-2 hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_15px_rgba(217,70,239,0.4)]">
-               <Image src="/social/instagram_new.png" alt="Instagram" fill className="object-contain" />
-            </a>
-            <a href="https://www.facebook.com/profile.php?id=61584299857212" target="_blank" rel="noopener noreferrer" className="block relative w-12 h-12 hover:-translate-y-2 hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_15px_rgba(59,130,246,0.4)]">
-               <Image src="/social/facebook_new.png" alt="Facebook" fill className="object-contain" />
-            </a>
-            <a href="https://www.linkedin.com/in/nandann-shetye/" target="_blank" rel="noopener noreferrer" className="block relative w-12 h-12 hover:-translate-y-2 hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_15px_rgba(14,165,233,0.4)]">
-               <Image src="/social/linkedin_new.png" alt="LinkedIn" fill className="object-contain" />
-            </a>
-          </div>
+          <SocialIcons />
         </div>
         
         {/* Masterpiece Featured Project */}
