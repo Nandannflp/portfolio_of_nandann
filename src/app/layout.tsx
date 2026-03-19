@@ -16,13 +16,15 @@ const alexBrush = Alex_Brush({
 });
 
 export const metadata: Metadata = {
-  title: "Nandann Shetye | AI Strategist | Business Coach | Digital Entrepreneur",
-  description: "AI Strategist • Digital Systems Architect • Business Coach",
+  metadataBase: new URL('https://nandannshetye.online'),
+  title: "Nandann Shetye | Business Coach & AI Strategist",
+  description: "Nandann Shetye is a Business Coach & AI Strategist helping creators and founders build AI-powered businesses using automation, systems and smart growth strategies. View portfolio and work with me.",
+  keywords: "Nandann Shetye, Business Coach, AI Strategist",
   openGraph: {
-    title: "Nandann Shetye | AI Strategist | Business Coach | Digital Entrepreneur",
-    description: "I turn ideas into automated digital systems.",
-    url: "https://portfolio-of-nandann.vercel.app",
-    siteName: "Nandann Shetye Portfolio",
+    title: "Nandann Shetye | Business Coach & AI Strategist",
+    description: "Nandann Shetye is a Business Coach & AI Strategist helping creators and founders build AI-powered businesses using automation, systems and smart growth strategies. View portfolio and work with me.",
+    url: "https://nandannshetye.online",
+    siteName: "Nandann Shetye | Business Coach & AI Strategist",
     images: [
       {
         url: "/opengraph-image.png",
@@ -36,8 +38,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nandann Shetye | AI Strategist | Business Coach | Digital Entrepreneur",
-    description: "AI Strategist • Digital Systems Architect • Business Coach",
+    title: "Nandann Shetye | Business Coach & AI Strategist",
+    description: "Nandann Shetye is a Business Coach & AI Strategist helping creators and founders build AI-powered businesses using automation, systems and smart growth strategies. View portfolio and work with me.",
     images: ["/opengraph-image.png"],
   },
 };
@@ -49,6 +51,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark scroll-smooth" suppressHydrationWarning={true}>
+      <head>
+        {/* Preload the very first animation frame so it's ready before JS executes (LCP boost) */}
+        <link
+          rel="preload"
+          as="image"
+          href="/sequence/frame_000_delay-0.066s.webp"
+          fetchPriority="high"
+        />
+      </head>
       <body 
         className={`${inter.variable} ${alexBrush.variable} font-sans antialiased bg-[#121212] text-white min-h-screen selection:bg-white/30`}
         suppressHydrationWarning={true}

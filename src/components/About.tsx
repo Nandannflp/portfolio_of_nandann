@@ -12,14 +12,14 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
             <h2 className="text-4xl md:text-6xl flex flex-col items-start font-bold tracking-tight text-white mb-4">
-              <span className="font-alex-brush text-emerald-400 font-normal lowercase tracking-normal text-7xl md:text-9xl -ml-2 mb-2">engineering</span>
-              Results.
+              <span className="font-alex-brush text-emerald-400 font-normal tracking-normal text-5xl md:text-7xl lg:text-8xl -ml-2 mb-2">Helping creators build</span>
+              AI-powered businesses.
             </h2>
             <p className="text-xl md:text-2xl text-gray-300 font-light leading-relaxed">
-              I help entrepreneurs and creators turn ideas into automated digital systems using AI, design, and smart business frameworks.
+              I’m Nandann Shetye, a Business Coach and AI Strategist helping creators and entrepreneurs build scalable digital businesses using AI systems and automation.
             </p>
             <p className="text-lg text-gray-400 leading-relaxed">
-              From high-converting websites and landing pages to AI-powered tools and automation workflows, my work focuses on building digital assets that don&apos;t just look good — <span className="text-white font-medium">they generate results.</span>
+              As Nandann Shetye, my focus is on designing simple but powerful systems that turn ideas into income without burnout.
             </p>
           </div>
           

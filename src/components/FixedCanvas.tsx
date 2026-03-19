@@ -1,39 +1,18 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { useScroll, useMotionValueEvent } from 'framer-motion';
 
 export default function FixedCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [images, setImages] = useState<HTMLImageElement[]>([]);
-  // Track entire window scroll
+  // Store images in a ref to avoid triggering re-renders on each frame load
+  const imagesRef = useRef<(HTMLImageElement | null)[]>(new Array(120).fill(null));
+  const [firstFrameReady, setFirstFrameReady] = useState(false);
   const { scrollYProgress } = useScroll();
 
-  const frameCount = 120; // 0 to 119 frames
+  const frameCount = 120;
 
-  useEffect(() => {
-    const loadedImages: HTMLImageElement[] = [];
-    let loadedCount = 0;
-
-    for (let i = 0; i < frameCount; i++) {
-        const img = new Image();
-        const paddedIndex = i.toString().padStart(3, '0');
-        img.src = `/sequence/frame_${paddedIndex}_delay-0.066s.webp`;
-        
-        img.onload = () => {
-            loadedCount++;
-            if (loadedCount === frameCount) {
-                setImages(loadedImages);
-            }
-        };
-        img.onerror = () => {
-             console.error(`Failed to load frame: ${img.src}`);
-        };
-        loadedImages.push(img);
-    }
-  }, []);
-
-  const drawImage = (img: HTMLImageElement | undefined) => {
+  const drawImage = useCallback((img: HTMLImageElement | null | undefined) => {
     const canvas = canvasRef.current;
     if (!canvas || !img) return;
 
@@ -54,63 +33,83 @@ export default function FixedCanvas() {
     const centerShift_y = (canvas.height - img.height * ratio) / 2;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    // Draw the image
-    ctx.drawImage(
-      img,
-      0,
-      0,
-      img.width,
-      img.height,
-      centerShift_x,
-      centerShift_y,
-      img.width * ratio,
-      img.height * ratio
-    );
-  };
+    ctx.drawImage(img, 0, 0, img.width, img.height, centerShift_x, centerShift_y, img.width * ratio, img.height * ratio);
+  }, []);
+
+  // Returns the nearest already-loaded frame so we never show a blank canvas while loading
+  const getNearestFrame = useCallback((frameIndex: number): HTMLImageElement | null => {
+    const images = imagesRef.current;
+    if (images[frameIndex]) return images[frameIndex];
+    for (let i = frameIndex - 1; i >= 0; i--) {
+      if (images[i]) return images[i];
+    }
+    for (let i = frameIndex + 1; i < frameCount; i++) {
+      if (images[i]) return images[i];
+    }
+    return null;
+  }, [frameCount]);
+
+  useEffect(() => {
+    const images = imagesRef.current;
+
+    const loadFrame = (i: number, priority?: 'high' | 'low' | 'auto') => {
+      const img = new Image();
+      const paddedIndex = i.toString().padStart(3, '0');
+      // Give the first frame high fetch priority so the browser downloads it first
+      if (priority) (img as HTMLImageElement & { fetchPriority: 'high' | 'low' | 'auto' }).fetchPriority = priority;
+      img.src = `/sequence/frame_${paddedIndex}_delay-0.066s.webp`;
+      img.onload = () => {
+        images[i] = img;
+        // Draw immediately as soon as the first frame is ready — no more waiting for all 120
+        if (i === 0) {
+          setFirstFrameReady(true);
+          drawImage(img);
+        }
+      };
+      img.onerror = () => console.error(`Failed to load frame: ${img.src}`);
+    };
+
+    // 1. Load frame 0 first with high priority for instant LCP
+    loadFrame(0, 'high');
+
+    // 2. Load the rest after a small delay so frame 0 gets a head start
+    const timer = setTimeout(() => {
+      for (let i = 1; i < frameCount; i++) {
+        loadFrame(i, 'low');
+      }
+    }, 80);
+
+    return () => clearTimeout(timer);
+  }, [drawImage]);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (images.length === frameCount) {
-        const frameIndex = Math.min(
-            frameCount - 1,
-            Math.floor(latest * frameCount)
-        );
-        requestAnimationFrame(() => drawImage(images[frameIndex]));
-    }
+    const frameIndex = Math.min(frameCount - 1, Math.floor(latest * frameCount));
+    const img = getNearestFrame(frameIndex);
+    if (img) requestAnimationFrame(() => drawImage(img));
   });
 
   useEffect(() => {
-    if (images.length === frameCount) {
-        const frameIndex = Math.min(
-          frameCount - 1,
-          Math.floor(scrollYProgress.get() * frameCount)
-        );
-        drawImage(images[frameIndex]);
-    }
+    if (!firstFrameReady) return;
 
     const handleResize = () => {
-      if (images.length === frameCount) {
-        const frameIndex = Math.min(
-            frameCount - 1,
-            Math.floor(scrollYProgress.get() * frameCount)
-        );
-        drawImage(images[frameIndex]);
-      }
+      const frameIndex = Math.min(frameCount - 1, Math.floor(scrollYProgress.get() * frameCount));
+      const img = getNearestFrame(frameIndex);
+      if (img) drawImage(img);
     };
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [images, scrollYProgress]);
+  }, [firstFrameReady, scrollYProgress, drawImage, getNearestFrame]);
 
   return (
     <div className="fixed inset-0 w-full h-full z-0 pointer-events-none bg-black">
       <canvas
         ref={canvasRef}
-        className="w-full h-full object-cover opacity-100 transition-opacity duration-1000"
+        className="w-full h-full object-cover opacity-100 transition-opacity duration-700"
       />
       {/* Global consistent blur layer */}
       <div className="absolute inset-0 backdrop-blur-[8px] pointer-events-none"></div>
-      {/* Vigentte and gradient overlay to ensure text readability globally */}
+      {/* Vignette and gradient overlay to ensure text readability globally */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.15)_100%)] pointer-events-none"></div>
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/5 to-[#0a0a0a]/40 pointer-events-none"></div>
     </div>

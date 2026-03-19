@@ -22,10 +22,10 @@ export default function Overlay({ progress }: { progress: MotionValue<number> })
         style={{ opacity: opacity1, y: y1 }}
         className="absolute inset-0 flex flex-col items-center justify-center text-center w-full"
       >
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white drop-shadow-lg mb-4">
+        <div className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white drop-shadow-lg mb-4">
           Nandann Shetye.
-        </h1>
-        <p className="text-xl md:text-3xl text-gray-300 font-light tracking-wide max-w-2xl">
+        </div>
+        <p className="text-xl md:text-3xl text-gray-300 font-bold tracking-wide max-w-2xl">
           AI Strategist <span className="text-emerald-400">•</span> Digital Systems Architect <span className="text-emerald-400">•</span> Business Coach
         </p>
       </motion.div>

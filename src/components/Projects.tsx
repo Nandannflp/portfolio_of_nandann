@@ -19,7 +19,8 @@ export default function Projects() {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 gap-8">
           <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-white border-l-4 border-cyan-500 pl-6">
-            What I <span className="font-alex-brush text-cyan-400 font-normal lowercase tracking-normal text-7xl md:text-9xl px-1">build.</span>
+            Work and <span className="font-alex-brush text-cyan-400 font-normal tracking-normal text-6xl md:text-8xl lg:text-9xl px-1">projects</span>
+            <span className="block text-2xl md:text-3xl text-gray-400 uppercase tracking-widest mt-4">by Nandann Shetye</span>
           </h2>
           
           <div className="flex items-center gap-4">
@@ -73,7 +74,7 @@ export default function Projects() {
               
               <div className="flex-shrink-0">
                 <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border border-white/10 flex items-center justify-center bg-white/5 group-hover:bg-emerald-500/20 group-hover:border-emerald-500/50 transition-all duration-500 group-hover:rotate-45">
-                  <svg xmlns="http://www.w3.org/polaris/2000/svg" className="h-8 w-8 text-white group-hover:text-emerald-400 transition-colors duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white group-hover:text-emerald-400 transition-colors duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
                 </div>
