@@ -9,14 +9,15 @@ import { ArrowRight } from "lucide-react";
 import { useUser } from "@/context/UserContext";
 
 /* ─────────────────────────────────────────────────────────────
-   Timing constants — tweak these to change conversation pace
+   Timing constants
 ───────────────────────────────────────────────────────────────*/
 const TIMINGS = {
-  introToQuestion: 1400,    // pause after "Introducing Myself" finishes
-  greetingDuration: 3800,   // how long "Hi 👋🏻 Name" stays on screen
-  welcomeDelay: 0.5,        // seconds before "Welcome" fades in (framer delay)
-  heremeDelay: 1.1,         // seconds before "This is me, Nandann" bounces in
-  heremedDuration: 4000,    // how long the hereme screen stays before snap
+  introToQuestion:  1400,   // pause after "Introducing Myself" finishes
+  // greeting sub-messages are timed via internal sub-phases below
+  greetingDuration: 7500,   // total time in greeting before → hereme
+  welcomeDelay:     0.5,    // s — before "Welcome" label appears
+  heremeDelay:      1.2,    // s — before "This is me, Nandann" bounces in
+  heremedDuration:  4200,   // ms — hereme stays before Thanos snap
 };
 
 /* ─────────────────────────────────────────────────────────────
@@ -25,16 +26,14 @@ const TIMINGS = {
 type Particle = {
   x: number; y: number;
   vx: number; vy: number;
-  size: number;
-  alpha: number;
-  decay: number;
-  color: string;
+  size: number; alpha: number;
+  decay: number; color: string;
 };
 
 function DustCanvas({ active, onDone }: { active: boolean; onDone: () => void }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const rafRef = useRef<number>(0);
-  const doneRef = useRef(false);
+  const rafRef    = useRef<number>(0);
+  const doneRef   = useRef(false);
 
   const runDust = useCallback(() => {
     doneRef.current = false;
@@ -43,7 +42,7 @@ function DustCanvas({ active, onDone }: { active: boolean; onDone: () => void })
     const ctx = canvas.getContext("2d")!;
     const W = window.innerWidth;
     const H = window.innerHeight;
-    canvas.width = W;
+    canvas.width  = W;
     canvas.height = H;
 
     const colors = [
@@ -60,7 +59,7 @@ function DustCanvas({ active, onDone }: { active: boolean; onDone: () => void })
         y: Math.random() * H,
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed - Math.random() * 1.8,
-        size: 0.4 + Math.random() * 2.8,
+        size:  0.4 + Math.random() * 2.8,
         alpha: 0.5 + Math.random() * 0.5,
         decay: 0.006 + Math.random() * 0.014,
         color: colors[Math.floor(Math.random() * colors.length)],
@@ -73,13 +72,11 @@ function DustCanvas({ active, onDone }: { active: boolean; onDone: () => void })
       for (const p of particles) {
         if (p.alpha <= 0) continue;
         alive++;
-        p.x += p.vx;
-        p.y += p.vy;
-        p.vx *= 0.985;
-        p.vy *= 0.985;
+        p.x  += p.vx; p.y  += p.vy;
+        p.vx *= 0.985; p.vy *= 0.985;
         p.alpha -= p.decay;
         ctx.globalAlpha = Math.max(0, p.alpha);
-        ctx.fillStyle = p.color;
+        ctx.fillStyle   = p.color;
         ctx.beginPath();
         ctx.ellipse(p.x, p.y, p.size, p.size * 0.38, Math.random() * Math.PI, 0, Math.PI * 2);
         ctx.fill();
@@ -91,7 +88,6 @@ function DustCanvas({ active, onDone }: { active: boolean; onDone: () => void })
         onDone();
       }
     };
-
     rafRef.current = requestAnimationFrame(animate);
   }, [onDone]);
 
@@ -101,51 +97,75 @@ function DustCanvas({ active, onDone }: { active: boolean; onDone: () => void })
   }, [active, runDust]);
 
   if (!active) return null;
-
-  return (
-    <canvas
-      ref={canvasRef}
-      className="fixed inset-0 z-[10000] pointer-events-none"
-    />
-  );
+  return <canvas ref={canvasRef} className="fixed inset-0 z-[10000] pointer-events-none" />;
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Typing cursor blink — makes it feel like messages are typed
+   Greeting — conversational lines in original centered style
+   Each line fades in one at a time via a sub-phase counter
 ───────────────────────────────────────────────────────────────*/
-function Cursor() {
-  return (
-    <motion.span
-      animate={{ opacity: [1, 0, 1] }}
-      transition={{ duration: 0.9, repeat: Infinity, ease: "linear" }}
-      className="inline-block w-[2px] h-[1em] bg-emerald-400 ml-1 align-middle"
-    />
-  );
-}
+const GREETING_LINES = (name: string) => [
+  { text: <>Hey there! 👋</>, delay: 0 },
+  { text: <>Nice to meet you, <span className="text-emerald-400 font-bold">{name}</span> ✨</>, delay: 2000 },
+  { text: <>And you are...? 🤔</>, delay: 4500 },
+];
 
-/* ─────────────────────────────────────────────────────────────
-   A single "chat bubble" that appears with delay
-───────────────────────────────────────────────────────────────*/
-function ChatLine({
-  delay = 0,
-  children,
-  align = "left",
-  dim = false,
-}: {
-  delay?: number;
-  children: React.ReactNode;
-  align?: "left" | "right";
-  dim?: boolean;
-}) {
+function GreetingConvo({ name }: { name: string }) {
+  const [visible, setVisible] = useState(0); // how many lines are shown
+
+  useEffect(() => {
+    const lines = GREETING_LINES(name);
+    const timers: ReturnType<typeof setTimeout>[] = [];
+
+    lines.forEach((line, idx) => {
+      // idx 0 appears immediately (delay: 0 handled by animation),
+      // the rest are scheduled
+      if (idx === 0) { setVisible(1); return; }
+      const t = setTimeout(() => setVisible(idx + 1), line.delay);
+      timers.push(t);
+    });
+
+    return () => timers.forEach(clearTimeout);
+  }, [name]);
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 18 }}
-      animate={{ opacity: dim ? 0.35 : 1, y: 0 }}
-      transition={{ delay, duration: 0.55, ease: "easeOut" }}
-      className={`flex ${align === "right" ? "justify-end" : "justify-start"} w-full`}
-    >
-      {children}
-    </motion.div>
+    <div className="flex flex-col items-center justify-center gap-10 text-center w-full max-w-xl">
+      {GREETING_LINES(name).map((line, idx) => (
+        <AnimatePresence key={idx}>
+          {visible > idx && (
+            <motion.h2
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.75, ease: "easeOut" }}
+              className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-white"
+            >
+              {line.text}
+            </motion.h2>
+          )}
+        </AnimatePresence>
+      ))}
+
+      {/* typing dots — appear after the last line */}
+      <AnimatePresence>
+        {visible >= GREETING_LINES(name).length && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="flex gap-2 items-center"
+          >
+            {[0, 0.22, 0.44].map((d, i) => (
+              <motion.span
+                key={i}
+                className="w-2.5 h-2.5 rounded-full bg-emerald-400/70"
+                animate={{ y: [0, -7, 0] }}
+                transition={{ delay: d, duration: 0.65, repeat: Infinity, ease: "easeInOut" }}
+              />
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
 
@@ -162,7 +182,7 @@ export default function SplashScreen() {
 
   const show = phase !== "done";
 
-  /* ── timers ── */
+  /* ── phase timers ── */
   useEffect(() => {
     if (phase === "greeting") {
       const t = setTimeout(() => setPhase("hereme"), TIMINGS.greetingDuration);
@@ -199,11 +219,7 @@ export default function SplashScreen() {
           <motion.div
             initial={{ opacity: 1 }}
             animate={{ opacity: phase === "dusting" ? 0 : 1 }}
-            transition={
-              phase === "dusting"
-                ? { duration: 0.8, ease: "easeIn" }
-                : {}
-            }
+            transition={phase === "dusting" ? { duration: 0.8, ease: "easeIn" } : {}}
             className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-black px-6"
           >
             <AnimatePresence mode="wait">
@@ -252,9 +268,7 @@ export default function SplashScreen() {
                         label="Enter your name please..."
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
-                        onKeyDown={(e) => {
-                          if (e.key === "Enter") handleSubmit();
-                        }}
+                        onKeyDown={(e) => { if (e.key === "Enter") handleSubmit(); }}
                         className="w-full bg-white/5 border-white/20 text-white text-lg h-14 pr-14 focus-visible:ring-emerald-500/50 focus-visible:border-emerald-500 pt-4 pb-2"
                       />
                       <button
@@ -269,70 +283,20 @@ export default function SplashScreen() {
                 </motion.div>
               )}
 
-              {/* ── GREETING — conversational chat bubbles ── */}
+              {/* ── GREETING — slow conversational lines, original centered style ── */}
               {phase === "greeting" && (
                 <motion.div
                   key="greeting"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0, transition: { duration: 0.8 } }}
-                  className="flex flex-col gap-5 w-full max-w-lg"
+                  className="w-full"
                 >
-                  {/* Me: "Hey there!" */}
-                  <ChatLine delay={0.1}>
-                    <div className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl rounded-tl-none px-5 py-3 max-w-xs">
-                      <p className="text-white text-lg md:text-xl font-medium">
-                        Hey there! 👋
-                      </p>
-                    </div>
-                  </ChatLine>
-
-                  {/* Me: "Nice to meet you, Name!" */}
-                  <ChatLine delay={0.9}>
-                    <div className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl rounded-tl-none px-5 py-3 max-w-xs">
-                      <p className="text-white text-lg md:text-xl font-medium">
-                        Nice to meet you,{" "}
-                        <span className="text-emerald-400 font-bold">
-                          {inputValue}
-                        </span>{" "}
-                        ✨
-                      </p>
-                    </div>
-                  </ChatLine>
-
-                  {/* Them: "And you are...?" */}
-                  <ChatLine delay={2.0} align="right">
-                    <div className="bg-emerald-500/20 backdrop-blur-sm border border-emerald-500/30 rounded-2xl rounded-tr-none px-5 py-3 max-w-xs">
-                      <p className="text-emerald-100 text-lg md:text-xl font-medium">
-                        And you are...? 🤔
-                      </p>
-                    </div>
-                  </ChatLine>
-
-                  {/* typing indicator */}
-                  <ChatLine delay={2.9}>
-                    <div className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl rounded-tl-none px-5 py-3">
-                      <div className="flex gap-1.5 items-center h-5">
-                        {[0, 0.2, 0.4].map((d, i) => (
-                          <motion.span
-                            key={i}
-                            className="w-2 h-2 rounded-full bg-white/60"
-                            animate={{ y: [0, -5, 0] }}
-                            transition={{
-                              delay: d,
-                              duration: 0.6,
-                              repeat: Infinity,
-                              ease: "easeInOut",
-                            }}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  </ChatLine>
+                  <GreetingConvo name={inputValue} />
                 </motion.div>
               )}
 
-              {/* ── HEREME — reveal + Welcome pop ── */}
+              {/* ── HEREME — Welcome + "This is me, Nandann" ── */}
               {phase === "hereme" && (
                 <motion.div
                   key="hereme"
@@ -341,32 +305,24 @@ export default function SplashScreen() {
                   exit={{ opacity: 0, transition: { duration: 0.5 } }}
                   className="text-center flex flex-col items-center gap-6"
                 >
-                  {/* WELCOME label slides & expands */}
+                  {/* WELCOME label expands letter-spacing */}
                   <motion.p
                     initial={{ opacity: 0, y: -16, letterSpacing: "0.05em" }}
-                    animate={{
-                      opacity: 1,
-                      y: 0,
-                      letterSpacing: "0.3em",
-                    }}
-                    transition={{
-                      delay: TIMINGS.welcomeDelay,
-                      duration: 0.9,
-                      ease: "easeOut",
-                    }}
+                    animate={{ opacity: 1, y: 0, letterSpacing: "0.3em" }}
+                    transition={{ delay: TIMINGS.welcomeDelay, duration: 0.9, ease: "easeOut" }}
                     className="text-emerald-400 text-base md:text-xl uppercase font-semibold"
                   >
                     Welcome
                   </motion.p>
 
-                  {/* "This is me, Nandann" bounces in */}
+                  {/* Main reveal — spring bounce */}
                   <motion.h2
                     initial={{ opacity: 0, scale: 0.55, y: 40 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     transition={{
                       delay: TIMINGS.heremeDelay,
                       duration: 0.85,
-                      ease: [0.34, 1.56, 0.64, 1], // overshoot spring
+                      ease: [0.34, 1.56, 0.64, 1],
                     }}
                     className="text-4xl md:text-7xl font-bold tracking-tighter text-white leading-tight"
                   >
@@ -376,15 +332,11 @@ export default function SplashScreen() {
                     </span>
                   </motion.h2>
 
-                  {/* subtle sub-line */}
+                  {/* Subtle tagline */}
                   <motion.p
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                      delay: TIMINGS.heremeDelay + 0.5,
-                      duration: 0.7,
-                      ease: "easeOut",
-                    }}
+                    transition={{ delay: TIMINGS.heremeDelay + 0.5, duration: 0.7, ease: "easeOut" }}
                     className="text-gray-500 text-sm md:text-base tracking-widest uppercase"
                   >
                     — and this is my world —
@@ -392,7 +344,7 @@ export default function SplashScreen() {
                 </motion.div>
               )}
 
-              {/* ── DUSTING — freeze last frame while canvas runs ── */}
+              {/* ── DUSTING — freeze the last frame while particles run ── */}
               {phase === "dusting" && (
                 <motion.div
                   key="dusting"
@@ -413,6 +365,7 @@ export default function SplashScreen() {
                   </p>
                 </motion.div>
               )}
+
             </AnimatePresence>
           </motion.div>
         )}
