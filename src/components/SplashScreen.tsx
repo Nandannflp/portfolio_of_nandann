@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SpecialText } from "@/components/ui/special-text";
 import { BlurFade } from "@/components/ui/blur-fade";
@@ -10,126 +10,120 @@ import { useUser } from "@/context/UserContext";
 
 /* ─────────────────────────────────────────────────────────────
    Timing constants
-───────────────────────────────────────────────────────────────*/
+─────────────────────────────────────────────────────────────*/
 const TIMINGS = {
-  introToQuestion:  1400,   // pause after "Introducing Myself" finishes
-  // greeting sub-messages are timed via internal sub-phases below
-  greetingDuration: 7500,   // total time in greeting before → hereme
-  welcomeDelay:     0.5,    // s — before "Welcome" label appears
-  heremeDelay:      1.2,    // s — before "This is me, Nandann" bounces in
-  heremedDuration:  4200,   // ms — hereme stays before Thanos snap
+  introToQuestion:  1400,  // pause after "Introducing Myself" finishes
+  greetingDuration: 5500,  // total time in greeting before → hereme
+  welcomeDelay:     0.5,   // s — before "Welcome" label appears
+  heremeDelay:      1.2,   // s — before "This is me, Nandann" bounces in
+  heremedDuration:  4200,  // ms — hereme stays before disintegration
 };
 
 /* ─────────────────────────────────────────────────────────────
-   Thanos Dust Canvas
-───────────────────────────────────────────────────────────────*/
+   Disintegration Canvas — lightweight upward-floating particles
+   ~900 tiny dots rise, drift sideways and fade. Smooth on all devices.
+─────────────────────────────────────────────────────────────*/
 type Particle = {
   x: number; y: number;
   vx: number; vy: number;
-  size: number; alpha: number;
-  decay: number; color: string;
+  radius: number;
+  alpha: number;
+  color: string;
 };
 
 function DustCanvas({ active, onDone }: { active: boolean; onDone: () => void }) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const rafRef    = useRef<number>(0);
-  const doneRef   = useRef(false);
+  const canvasRef   = useRef<HTMLCanvasElement>(null);
+  const rafRef      = useRef<number>(0);
+  const hasStarted  = useRef(false);
+  const onDoneRef   = useRef(onDone);
+  onDoneRef.current = onDone;
 
-  const runDust = useCallback(() => {
-    doneRef.current = false;
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d")!;
-    const W = window.innerWidth;
-    const H = window.innerHeight;
-    canvas.width  = W;
-    canvas.height = H;
+  useEffect(() => {
+    if (!active || hasStarted.current) return;
+    hasStarted.current = true;
 
+    const canvas = canvasRef.current!;
+    const ctx    = canvas.getContext("2d")!;
+    const W = canvas.width  = window.innerWidth;
+    const H = canvas.height = window.innerHeight;
+
+    // Colour palette — white/grey with emerald/cyan accents
     const colors = [
-      "#ffffff", "#d4d4d4", "#a3a3a3",
+      "#ffffff", "#e5e5e5", "#d4d4d4",
       "#6ee7b7", "#34d399", "#a7f3d0",
-      "#67e8f9", "#22d3ee", "#f0fdf4",
+      "#67e8f9", "#22d3ee",
     ];
 
-    const particles: Particle[] = Array.from({ length: 1400 }, () => {
-      const angle = Math.random() * Math.PI * 2;
-      const speed = 0.3 + Math.random() * 2.8;
-      return {
-        x: Math.random() * W,
-        y: Math.random() * H,
-        vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed - Math.random() * 1.8,
-        size:  0.4 + Math.random() * 2.8,
-        alpha: 0.5 + Math.random() * 0.5,
-        decay: 0.006 + Math.random() * 0.014,
-        color: colors[Math.floor(Math.random() * colors.length)],
-      };
-    });
+    // 900 small dots spawned randomly across the whole screen
+    const particles: Particle[] = Array.from({ length: 900 }, () => ({
+      x:      Math.random() * W,
+      y:      Math.random() * H,
+      vx:     (Math.random() - 0.5) * 0.8,      // gentle horizontal drift
+      vy:     -(0.6 + Math.random() * 2.2),       // always rising upward
+      radius: 0.8 + Math.random() * 2.2,
+      alpha:  0.7 + Math.random() * 0.3,
+      color:  colors[Math.floor(Math.random() * colors.length)],
+    }));
 
     const animate = () => {
       ctx.clearRect(0, 0, W, H);
       let alive = 0;
+
       for (const p of particles) {
         if (p.alpha <= 0) continue;
         alive++;
-        p.x  += p.vx; p.y  += p.vy;
-        p.vx *= 0.985; p.vy *= 0.985;
-        p.alpha -= p.decay;
+
+        p.x     += p.vx;
+        p.y     += p.vy;
+        p.vx    += (Math.random() - 0.5) * 0.05; // tiny wobble
+        p.alpha -= 0.007 + Math.random() * 0.006;
+
         ctx.globalAlpha = Math.max(0, p.alpha);
         ctx.fillStyle   = p.color;
         ctx.beginPath();
-        ctx.ellipse(p.x, p.y, p.size, p.size * 0.38, Math.random() * Math.PI, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fill();
       }
+
       if (alive > 0) {
         rafRef.current = requestAnimationFrame(animate);
-      } else if (!doneRef.current) {
-        doneRef.current = true;
-        onDone();
+      } else {
+        onDoneRef.current();
       }
     };
-    rafRef.current = requestAnimationFrame(animate);
-  }, [onDone]);
 
-  useEffect(() => {
-    if (active) runDust();
+    rafRef.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(rafRef.current);
-  }, [active, runDust]);
+  }, [active]);
 
   if (!active) return null;
   return <canvas ref={canvasRef} className="fixed inset-0 z-[10000] pointer-events-none" />;
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Greeting — conversational lines in original centered style
-   Each line fades in one at a time via a sub-phase counter
-───────────────────────────────────────────────────────────────*/
+   Greeting — conversational lines, one at a time, centered
+─────────────────────────────────────────────────────────────*/
 const GREETING_LINES = (name: string) => [
-  { text: <>Hey there! 👋</>, delay: 0 },
-  { text: <>Nice to meet you, <span className="text-emerald-400 font-bold">{name}</span> ✨</>, delay: 2000 },
-  { text: <>And you are...? 🤔</>, delay: 4500 },
+  { text: <>Hey there! 👋</>,                                                                        delay: 0    },
+  { text: <>Nice to meet you, <span className="text-emerald-400 font-bold">{name}</span> ✨</>,      delay: 2200 },
 ];
 
 function GreetingConvo({ name }: { name: string }) {
-  const [visible, setVisible] = useState(0); // how many lines are shown
+  const [visible, setVisible] = useState(0);
 
   useEffect(() => {
     const lines = GREETING_LINES(name);
     const timers: ReturnType<typeof setTimeout>[] = [];
-
     lines.forEach((line, idx) => {
-      // idx 0 appears immediately (delay: 0 handled by animation),
-      // the rest are scheduled
       if (idx === 0) { setVisible(1); return; }
       const t = setTimeout(() => setVisible(idx + 1), line.delay);
       timers.push(t);
     });
-
     return () => timers.forEach(clearTimeout);
   }, [name]);
 
   return (
-    <div className="flex flex-col items-center justify-center gap-10 text-center w-full max-w-xl">
+    <div className="flex flex-col items-center justify-center gap-10 text-center w-full max-w-xl mx-auto">
       {GREETING_LINES(name).map((line, idx) => (
         <AnimatePresence key={idx}>
           {visible > idx && (
@@ -137,7 +131,7 @@ function GreetingConvo({ name }: { name: string }) {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.75, ease: "easeOut" }}
-              className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-white"
+              className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-white text-center w-full"
             >
               {line.text}
             </motion.h2>
@@ -145,7 +139,7 @@ function GreetingConvo({ name }: { name: string }) {
         </AnimatePresence>
       ))}
 
-      {/* typing dots — appear after the last line */}
+      {/* Bouncing dots appear after all lines */}
       <AnimatePresence>
         {visible >= GREETING_LINES(name).length && (
           <motion.div
@@ -171,7 +165,7 @@ function GreetingConvo({ name }: { name: string }) {
 
 /* ─────────────────────────────────────────────────────────────
    Main SplashScreen
-───────────────────────────────────────────────────────────────*/
+─────────────────────────────────────────────────────────────*/
 export default function SplashScreen() {
   const [phase, setPhase] = useState<
     "intro" | "question" | "greeting" | "hereme" | "dusting" | "done"
@@ -219,7 +213,7 @@ export default function SplashScreen() {
           <motion.div
             initial={{ opacity: 1 }}
             animate={{ opacity: phase === "dusting" ? 0 : 1 }}
-            transition={phase === "dusting" ? { duration: 0.8, ease: "easeIn" } : {}}
+            transition={phase === "dusting" ? { duration: 1.8, ease: "easeIn" } : {}}
             className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-black px-6"
           >
             <AnimatePresence mode="wait">
@@ -283,7 +277,7 @@ export default function SplashScreen() {
                 </motion.div>
               )}
 
-              {/* ── GREETING — slow conversational lines, original centered style ── */}
+              {/* ── GREETING ── */}
               {phase === "greeting" && (
                 <motion.div
                   key="greeting"
@@ -305,7 +299,7 @@ export default function SplashScreen() {
                   exit={{ opacity: 0, transition: { duration: 0.5 } }}
                   className="text-center flex flex-col items-center gap-6"
                 >
-                  {/* WELCOME label expands letter-spacing */}
+                  {/* WELCOME label — letter-spacing expands */}
                   <motion.p
                     initial={{ opacity: 0, y: -16, letterSpacing: "0.05em" }}
                     animate={{ opacity: 1, y: 0, letterSpacing: "0.3em" }}
@@ -315,7 +309,7 @@ export default function SplashScreen() {
                     Welcome
                   </motion.p>
 
-                  {/* Main reveal — spring bounce */}
+                  {/* "This is me, Nandann" — spring bounce */}
                   <motion.h2
                     initial={{ opacity: 0, scale: 0.55, y: 40 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -332,7 +326,7 @@ export default function SplashScreen() {
                     </span>
                   </motion.h2>
 
-                  {/* Subtle tagline */}
+                  {/* Tagline */}
                   <motion.p
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -344,7 +338,7 @@ export default function SplashScreen() {
                 </motion.div>
               )}
 
-              {/* ── DUSTING — freeze the last frame while particles run ── */}
+              {/* ── DUSTING — frozen frame under the particle canvas ── */}
               {phase === "dusting" && (
                 <motion.div
                   key="dusting"
