@@ -1,64 +1,72 @@
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
+"use client";
 
-const socials = [
-  {
-    name: "Spotify",
-    href: "https://open.spotify.com/artist/5BhtyA8oT2cbYiIkoSZjHE?si=-Wf6MKUYRIuvq9hk4qmZgg",
-    icon: "/social/spotify_new.png",
-    glowColor: "hover:shadow-[0_0_20px_rgba(30,215,96,0.4)]",
-  },
-  {
-    name: "Apple Music",
-    href: "https://music.apple.com/us/artist/n-sparxz/1834647878",
-    icon: "/social/apple_music_new.png",
-    glowColor: "hover:shadow-[0_0_20px_rgba(252,60,68,0.4)]",
-  },
+import Image from "next/image";
+import { motion } from "framer-motion";
+
+const socialCards = [
   {
     name: "Instagram",
     href: "https://www.instagram.com/nandann_shetye/",
-    icon: "/social/instagram_new.png",
-    glowColor: "hover:shadow-[0_0_20px_rgba(225,48,108,0.4)]",
-  },
-  {
-    name: "Facebook",
-    href: "https://www.facebook.com/profile.php?id=61584299857212",
-    icon: "/social/facebook_new.png",
-    glowColor: "hover:shadow-[0_0_20px_rgba(66,103,178,0.4)]",
+    image: "/social/instagram_card.png",
+    glowColor: "rgba(225, 48, 108, 0.45)",
+    glowColorHover: "rgba(225, 48, 108, 0.7)",
   },
   {
     name: "LinkedIn",
     href: "https://www.linkedin.com/in/nandann-shetye/",
-    icon: "/social/linkedin_new.png",
-    glowColor: "hover:shadow-[0_0_20px_rgba(10,102,194,0.4)]",
+    image: "/social/linkedin_card.png",
+    glowColor: "rgba(10, 102, 194, 0.45)",
+    glowColorHover: "rgba(10, 102, 194, 0.7)",
   },
 ];
 
 const SocialIcons = () => {
   return (
-    <div className="flex items-center justify-center gap-4 flex-wrap">
-      {socials.map((social) => (
-        <a
-          key={social.name}
-          href={social.href}
+    <div className="flex items-center justify-center gap-6 flex-wrap">
+      {socialCards.map((card) => (
+        <motion.a
+          key={card.name}
+          href={card.href}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label={social.name}
+          aria-label={card.name}
+          className="block rounded-2xl cursor-pointer"
+          initial={{ opacity: 0, y: 20, rotate: 0 }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+            rotate: [0, -2, 2, -1.5, 1.5, -0.5, 0.5, 0],
+            transition: { 
+              duration: 0.8, 
+              ease: "easeOut",
+              rotate: { delay: 0.3, duration: 0.5, ease: "easeInOut" }
+            },
+          }}
+          viewport={{ once: true, margin: "-50px" }}
+          /* Shake + glow on hover */
+          whileHover={{
+            rotate: [0, -1.5, 1.5, -1, 1, -0.5, 0.5, 0],
+            boxShadow: `0 0 15px ${card.glowColorHover}, 0 0 25px ${card.glowColor}`,
+            scale: 1.04,
+            transition: {
+              rotate: { duration: 0.5, ease: "easeInOut" },
+              boxShadow: { duration: 0.3 },
+              scale: { duration: 0.3 },
+            },
+          }}
+          style={{
+            boxShadow: `0 0 8px ${card.glowColor}`,
+          }}
         >
-          <Button
-            variant="outline"
-            type="button"
-            className={`rounded-xl border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 hover:scale-110 transition-all duration-300 cursor-pointer h-12 w-12 p-0 ${social.glowColor}`}
-          >
-            <Image
-              src={social.icon}
-              alt={`${social.name} icon`}
-              width={24}
-              height={24}
-              className="object-contain"
-            />
-          </Button>
-        </a>
+          <Image
+            src={card.image}
+            alt={`${card.name} card`}
+            width={640}
+            height={360}
+            className="w-48 sm:w-56 md:w-72 h-auto object-contain rounded-2xl"
+            priority
+          />
+        </motion.a>
       ))}
     </div>
   );
