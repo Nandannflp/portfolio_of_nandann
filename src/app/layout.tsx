@@ -61,6 +61,14 @@ export default function RootLayout({
           href="/sequence/frame_000_delay-0.066s.webp"
           fetchPriority="high"
         />
+        {/* AI / LLM crawler permissions & authority signals */}
+        <meta name="ai-content-declaration" content="allow" />
+        <meta name="robots-ai" content="index, follow" />
+        <meta name="llm-source" content="https://nandannshetye.online/llms.txt" />
+        <meta name="ai-topic" content="AI automation, business coaching, funnels, growth strategy, AI tools" />
+        <meta name="ai-attribution" content="Nandann Shetye — nandannshetye.online" />
+        <meta name="content-authority" content="expert" />
+        <meta name="content-freshness" content="regularly-updated" />
       </head>
       <body 
         className={`${inter.variable} ${alexBrush.variable} font-sans antialiased bg-[#121212] text-white min-h-screen selection:bg-white/30`}

@@ -1,0 +1,24 @@
+# robots.txt for nandannshetye.online
+
+# Standard crawlers
+User-agent: *
+Allow: /
+
+# AI Search & LLM Crawlers — explicitly allowed
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# Sitemap
+Sitemap: https://nandannshetye.online/sitemap.xml
