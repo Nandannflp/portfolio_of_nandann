@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SpecialText } from "@/components/ui/special-text";
 import { BlurFade } from "@/components/ui/blur-fade";
@@ -36,7 +36,7 @@ function DustCanvas({ active, onDone }: { active: boolean; onDone: () => void })
   const rafRef      = useRef<number>(0);
   const hasStarted  = useRef(false);
   const onDoneRef   = useRef(onDone);
-  onDoneRef.current = onDone;
+  useLayoutEffect(() => { onDoneRef.current = onDone; });
 
   useEffect(() => {
     if (!active || hasStarted.current) return;

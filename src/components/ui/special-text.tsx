@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback, startTransition } from "react";
 import { useInView } from "motion/react";
 
 interface SpecialTextProps {
@@ -53,14 +53,16 @@ export function SpecialText({
     startTimeoutRef.current = null;
   }
 
-  function startAnimation() {
-    setHasStarted(true);
-    setDisplayText(" ".repeat(text.length));
-    setCurrentPhase("phase1");
-    setAnimationStep(0);
-  }
+  const startAnimation = useCallback(() => {
+    startTransition(() => {
+      setHasStarted(true);
+      setDisplayText(" ".repeat(text.length));
+      setCurrentPhase("phase1");
+      setAnimationStep(0);
+    });
+  }, [text.length]);
 
-  const runPhase1 = () => {
+  const runPhase1 = useCallback(() => {
     const maxSteps = text.length * 2;
     const currentLength = Math.min(animationStep + 1, text.length);
 
@@ -82,9 +84,9 @@ export function SpecialText({
       setCurrentPhase("phase2");
       setAnimationStep(0);
     }
-  };
+  }, [text, animationStep]);
 
-  const runPhase2 = () => {
+  const runPhase2 = useCallback(() => {
     const revealedCount = Math.floor(animationStep / 2);
     const chars: string[] = [];
 
@@ -118,7 +120,7 @@ export function SpecialText({
         onComplete();
       }
     }
-  };
+  }, [text, animationStep, onComplete]);
 
   useEffect(() => {
     if (shouldAnimate && !hasStarted) {
@@ -133,7 +135,7 @@ export function SpecialText({
       }, delay * 1000);
     }
     return () => clearStartTimeout();
-  }, [shouldAnimate, hasStarted, delay, text.length]);
+  }, [shouldAnimate, hasStarted, delay, startAnimation]);
 
   useEffect(() => {
     if (!hasStarted) {
@@ -157,13 +159,15 @@ export function SpecialText({
         clearInterval(intervalRef.current);
       }
     };
-  }, [currentPhase, animationStep, text, speed, hasStarted]);
+  }, [currentPhase, animationStep, text, speed, hasStarted, runPhase1, runPhase2]);
 
   useEffect(() => {
     if (hasStarted) {
-      setDisplayText(" ".repeat(text.length));
-      setCurrentPhase("phase1");
-      setAnimationStep(0);
+      startTransition(() => {
+        setDisplayText(" ".repeat(text.length));
+        setCurrentPhase("phase1");
+        setAnimationStep(0);
+      });
     }
 
     return () => {

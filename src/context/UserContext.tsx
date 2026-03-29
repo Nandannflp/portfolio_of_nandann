@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 interface UserContextType {
   userName: string | null;
@@ -10,14 +10,10 @@ interface UserContextType {
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export function UserProvider({ children }: { children: React.ReactNode }) {
-  const [userName, setUserNameState] = useState<string | null>(null);
-
-  useEffect(() => {
-    const savedName = sessionStorage.getItem("portfolio_user_name");
-    if (savedName) {
-      setUserNameState(savedName);
-    }
-  }, []);
+  const [userName, setUserNameState] = useState<string | null>(() => {
+    if (typeof window === "undefined") return null;
+    return sessionStorage.getItem("portfolio_user_name");
+  });
 
   const setUserName = (name: string) => {
     setUserNameState(name);

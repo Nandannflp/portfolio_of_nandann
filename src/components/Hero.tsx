@@ -15,7 +15,7 @@ export default function Hero() {
         >
           <div className="inline-block glass-card px-4 py-2 border-emerald-500/30 bg-emerald-500/10 mb-6">
             <h1 className="text-emerald-400 text-sm md:text-base font-medium tracking-widest uppercase m-0">
-              I'm Nandann Shetye, Business Coach & AI Strategist
+              I&apos;m Nandann Shetye, Business Coach &amp; AI Strategist
             </h1>
           </div>
           
