@@ -7,5 +7,7 @@
 			"path": "../Siuu pics/sequence"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
 }

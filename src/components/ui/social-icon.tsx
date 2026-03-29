@@ -7,14 +7,14 @@ const socialCards = [
   {
     name: "Instagram",
     href: "https://www.instagram.com/nandann_shetye/",
-    image: "/social/instagram_card.png",
+    image: "/social/Instagram.png",
     glowColor: "rgba(225, 48, 108, 0.45)",
     glowColorHover: "rgba(225, 48, 108, 0.7)",
   },
   {
     name: "LinkedIn",
     href: "https://www.linkedin.com/in/nandann-shetye/",
-    image: "/social/linkedin_card.png",
+    image: "/social/linkedin.png",
     glowColor: "rgba(10, 102, 194, 0.45)",
     glowColorHover: "rgba(10, 102, 194, 0.7)",
   },
