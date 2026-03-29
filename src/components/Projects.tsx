@@ -67,6 +67,35 @@ export default function Projects() {
           </div>
         </a>
 
+        {/* Golden Showcase Button */}
+        <a href="/projects" className="block mb-12">
+          <div className="glass-card group relative p-10 md:p-16 h-64 md:h-80 w-full overflow-hidden transition-all duration-700 border-yellow-500/30 bg-black/60 hover:-translate-y-2 hover:border-yellow-400/80 hover:bg-black/90 hover:shadow-[0_0_50px_rgba(234,179,8,0.4)] flex flex-col items-center justify-center text-center">
+            
+            {/* Animated Glow Background */}
+            <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/0 via-yellow-500/10 to-amber-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0"></div>
+            
+            <div className="relative z-10 flex flex-col items-center justify-center space-y-6">
+              <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border border-yellow-500/40 flex items-center justify-center bg-yellow-500/10 group-hover:bg-yellow-400/20 group-hover:border-yellow-400/80 transition-all duration-500 group-hover:scale-110 shadow-[0_0_20px_rgba(234,179,8,0.2)]">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-yellow-500 group-hover:text-yellow-300 transition-colors duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+              </div>
+              
+              <h3 className="text-4xl md:text-6xl font-black tracking-tighter text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-yellow-200 group-hover:to-amber-500 transition-all duration-500 uppercase">
+                Explore The Vault
+              </h3>
+              
+              <p className="text-yellow-500/80 text-lg md:text-xl font-medium tracking-widest uppercase">
+                View All Projects &amp; Capabilities
+              </p>
+            </div>
+
+            {/* Subtle floating particles effect */}
+            <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-yellow-400 rounded-full blur-[1px] opacity-0 group-hover:animate-ping duration-1000"></div>
+            <div className="absolute bottom-1/3 right-1/4 w-3 h-3 bg-amber-500 rounded-full blur-[2px] opacity-0 group-hover:animate-pulse delay-300"></div>
+          </div>
+        </a>
+
         {/* Regular Builds Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {builds.map((title, i) => (
