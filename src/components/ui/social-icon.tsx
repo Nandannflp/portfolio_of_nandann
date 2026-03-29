@@ -14,7 +14,7 @@ const socialCards = [
   {
     name: "LinkedIn",
     href: "https://www.linkedin.com/in/nandann-shetye/",
-    image: "/social/linkedin.png",
+    image: "/social/linkedin-modified.png",
     glowColor: "rgba(10, 102, 194, 0.45)",
     glowColorHover: "rgba(10, 102, 194, 0.7)",
   },
