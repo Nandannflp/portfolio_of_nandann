@@ -109,7 +109,7 @@ export default function ProjectsPage() {
               <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter uppercase leading-none">
                 <span className="text-white">The </span>
                 <span 
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-600"
+                  className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-600"
                   style={{ 
                     textShadow: "0 0 40px rgba(234,179,8,0.4), 0 0 80px rgba(234,179,8,0.2), 0 0 120px rgba(234,179,8,0.1)",
                     filter: "drop-shadow(0 0 30px rgba(234,179,8,0.3))",
@@ -173,7 +173,7 @@ export default function ProjectsPage() {
               ✦ Projects
             </span>
             <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-white">
-              Built With <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-amber-500">AI Power</span>
+              Built With <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-amber-500">AI Power</span>
             </h2>
             <p className="mt-3 text-base text-gray-500 max-w-xl mx-auto">
               Tap any card to summon the genie and learn more.

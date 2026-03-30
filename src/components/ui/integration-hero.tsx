@@ -104,7 +104,7 @@ export default function AIModelsCarousel() {
             🧠 AI Models
           </span>
           <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-white">
-            Models I <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-amber-500">Work With</span>
+            Models I <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-amber-500">Work With</span>
           </h2>
           <p className="mt-3 text-base text-gray-500 max-w-xl mx-auto">
             23 frontier AI models powering my automated systems and workflows.
@@ -139,7 +139,7 @@ export default function AIModelsCarousel() {
             ⚡ AI Apps
           </span>
           <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-white">
-            Apps in My <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-amber-500">Arsenal</span>
+            Apps in My <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-amber-500">Arsenal</span>
           </h2>
           <p className="mt-3 text-base text-gray-500 max-w-xl mx-auto">
             33 AI-powered applications that supercharge every aspect of my workflow.
