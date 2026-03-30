@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import ButtonWithIconDemo from '@/components/ui/button-witn-icon';
+import { TextColor } from '@/components/ui/text-color';
 
 export default function Hero() {
   return (
@@ -14,13 +15,9 @@ export default function Hero() {
           className="space-y-6"
         >
 
-          
-          <div className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter text-white drop-shadow-2xl uppercase leading-[0.85]">
-            Create.<br/>
-            Deliver.<br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">
-              Dominate.
-            </span>
+          {/* Animated Hero Text */}
+          <div className="-mx-2 -mt-4">
+            <TextColor />
           </div>
           
           <div className="w-full max-w-2xl pt-8">
