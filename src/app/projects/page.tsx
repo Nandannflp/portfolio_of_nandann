@@ -109,11 +109,7 @@ export default function ProjectsPage() {
               <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter uppercase leading-none">
                 <span className="text-white">The </span>
                 <span 
-                  className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-600"
-                  style={{ 
-                    textShadow: "0 0 40px rgba(234,179,8,0.4), 0 0 80px rgba(234,179,8,0.2), 0 0 120px rgba(234,179,8,0.1)",
-                    filter: "drop-shadow(0 0 30px rgba(234,179,8,0.3))",
-                  }}
+                  className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-600 drop-shadow-[0_0_20px_rgba(234,179,8,0.3)]"
                 >
                   Vault
                 </span>
