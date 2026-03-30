@@ -7,6 +7,7 @@ import { BlurFade } from "@/components/ui/blur-fade";
 import { FloatingLabelInput } from "@/components/ui/floating-label";
 import { ArrowRight } from "lucide-react";
 import { useUser } from "@/context/UserContext";
+import RainingLetters from "@/components/ui/modern-animated-hero-section";
 
 /* ─────────────────────────────────────────────────────────────
    Timing constants
@@ -178,10 +179,7 @@ export default function SplashScreen() {
 
   /* ── phase timers ── */
   useEffect(() => {
-    if (phase === "greeting") {
-      const t = setTimeout(() => setPhase("hereme"), TIMINGS.greetingDuration);
-      return () => clearTimeout(t);
-    }
+    // phase === "greeting" transition is handled by RainingLetters onComplete
     if (phase === "hereme") {
       const t = setTimeout(() => {
         setDustActive(true);
@@ -284,9 +282,12 @@ export default function SplashScreen() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0, transition: { duration: 0.8 } }}
-                  className="w-full"
+                  className="fixed inset-0 z-[1001] w-full h-full flex flex-col items-center justify-center bg-black"
                 >
-                  <GreetingConvo name={inputValue} />
+                  <RainingLetters 
+                    userName={inputValue} 
+                    onComplete={() => setPhase("hereme")}
+                  />
                 </motion.div>
               )}
 
