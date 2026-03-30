@@ -103,8 +103,8 @@ export default function AIModelsCarousel() {
           <span className="inline-block px-4 py-1.5 mb-4 text-xs font-semibold rounded-full border border-yellow-500/30 bg-yellow-500/10 text-yellow-400 tracking-widest uppercase">
             🧠 AI Models
           </span>
-          <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-white">
-            Models I <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-amber-500">Work With</span>
+          <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
+            Models I <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-600 drop-shadow-[0_0_15px_rgba(234,179,8,0.2)]">Work With</span>
           </h2>
           <p className="mt-3 text-base text-gray-500 max-w-xl mx-auto">
             23 frontier AI models powering my automated systems and workflows.
@@ -138,8 +138,8 @@ export default function AIModelsCarousel() {
           <span className="inline-block px-4 py-1.5 mb-4 text-xs font-semibold rounded-full border border-yellow-500/30 bg-yellow-500/10 text-yellow-400 tracking-widest uppercase">
             ⚡ AI Apps
           </span>
-          <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-white">
-            Apps in My <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-amber-500">Arsenal</span>
+          <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
+            Apps in My <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-600 drop-shadow-[0_0_15px_rgba(234,179,8,0.2)]">Arsenal</span>
           </h2>
           <p className="mt-3 text-base text-gray-500 max-w-xl mx-auto">
             33 AI-powered applications that supercharge every aspect of my workflow.

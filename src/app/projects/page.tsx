@@ -172,8 +172,8 @@ export default function ProjectsPage() {
             <span className="inline-block px-4 py-1.5 mb-4 text-xs font-semibold rounded-full border border-yellow-500/30 bg-yellow-500/10 text-yellow-400 tracking-widest uppercase">
               ✦ Projects
             </span>
-            <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-white">
-              Built With <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-amber-500">AI Power</span>
+            <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
+              Built With <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-600 drop-shadow-[0_0_15px_rgba(234,179,8,0.2)]">AI Power</span>
             </h2>
             <p className="mt-3 text-base text-gray-500 max-w-xl mx-auto">
               Tap any card to summon the genie and learn more.
