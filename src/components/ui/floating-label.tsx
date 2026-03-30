@@ -31,16 +31,16 @@ const FloatingLabel = React.forwardRef<
 });
 FloatingLabel.displayName = 'FloatingLabel';
 
-type FloatingLabelInputProps = InputProps & { label?: string };
+type FloatingLabelInputProps = InputProps & { label?: string; labelClassName?: string };
 
 export const FloatingLabelInput = React.forwardRef<
   React.ElementRef<typeof FloatingInput>,
   React.PropsWithoutRef<FloatingLabelInputProps>
->(({ id, label, ...props }, ref) => {
+>(({ id, label, labelClassName, ...props }, ref) => {
   return (
     <div className="relative w-full">
       <FloatingInput ref={ref} id={id} {...props} />
-      <FloatingLabel htmlFor={id}>{label}</FloatingLabel>
+      <FloatingLabel htmlFor={id} className={labelClassName}>{label}</FloatingLabel>
     </div>
   );
 });

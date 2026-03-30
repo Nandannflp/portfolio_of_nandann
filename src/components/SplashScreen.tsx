@@ -170,7 +170,12 @@ function GreetingConvo({ name }: { name: string }) {
 export default function SplashScreen() {
   const [phase, setPhase] = useState<
     "intro" | "question" | "greeting" | "hereme" | "dusting" | "done"
-  >("intro");
+  >(() => {
+    if (typeof window !== "undefined" && sessionStorage.getItem("portfolio_user_name")) {
+      return "done";
+    }
+    return "intro";
+  });
   const [inputValue, setInputValue] = useState("");
   const [dustActive, setDustActive] = useState(false);
   const { setUserName } = useUser();
@@ -247,26 +252,30 @@ export default function SplashScreen() {
                   className="flex flex-col items-center justify-center w-full max-w-md space-y-12"
                 >
                   <BlurFade delay={0.3} inView>
-                    <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-center text-white">
+                    <h2 
+                      className="text-3xl md:text-5xl font-bold tracking-wider text-center text-white"
+                      style={{ fontFamily: 'monospace' }}
+                    >
                       What is your{" "}
-                      <span className="text-emerald-400">good</span> name?
+                      <span className="text-[#00ff00]">good</span> name?
                     </h2>
                   </BlurFade>
 
                   <BlurFade delay={0.9} inView className="w-full">
-                    <div className="relative flex items-center w-full">
+                    <div className="relative flex items-center w-full font-mono">
                       <FloatingLabelInput
                         id="name-input"
                         label="Enter your name please..."
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                         onKeyDown={(e) => { if (e.key === "Enter") handleSubmit(); }}
-                        className="w-full bg-white/5 border-white/20 text-white text-lg h-14 pr-14 focus-visible:ring-emerald-500/50 focus-visible:border-emerald-500 pt-4 pb-2"
+                        className="w-full bg-black border-[#00ff00]/30 text-[#00ff00] caret-[#00ff00] text-lg h-14 pr-14 focus-visible:ring-[#00ff00]/50 focus-visible:border-[#00ff00] pt-4 pb-2"
+                        labelClassName="!bg-black !text-[#00ff00]/70 peer-focus:!text-[#00ff00] font-mono"
                       />
                       <button
                         onClick={handleSubmit}
                         disabled={!inputValue.trim()}
-                        className="absolute right-2 top-1/2 -translate-y-1/2 p-2 hover:bg-emerald-500/20 text-emerald-400 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed group z-20"
+                        className="absolute right-2 top-1/2 -translate-y-1/2 p-2 hover:bg-[#00ff00]/20 text-[#00ff00] rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed group z-20"
                       >
                         <ArrowRight className="w-6 h-6 transition-transform group-hover:translate-x-1" />
                       </button>

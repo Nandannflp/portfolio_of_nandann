@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import SocialIcons from '@/components/ui/social-icon';
 
 const builds = [
@@ -68,7 +69,7 @@ export default function Projects() {
         </a>
 
         {/* Golden Showcase Button */}
-        <a href="/projects" className="block mb-12">
+        <Link href="/projects" className="block mb-12">
           <div className="glass-card group relative p-10 md:p-16 h-64 md:h-80 w-full overflow-hidden transition-all duration-700 border-yellow-500/30 bg-black/60 hover:-translate-y-2 hover:border-yellow-400/80 hover:bg-black/90 hover:shadow-[0_0_50px_rgba(234,179,8,0.4)] flex flex-col items-center justify-center text-center">
             
             {/* Animated Glow Background */}
@@ -94,7 +95,7 @@ export default function Projects() {
             <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-yellow-400 rounded-full blur-[1px] opacity-0 group-hover:animate-ping duration-1000"></div>
             <div className="absolute bottom-1/3 right-1/4 w-3 h-3 bg-amber-500 rounded-full blur-[2px] opacity-0 group-hover:animate-pulse delay-300"></div>
           </div>
-        </a>
+        </Link>
 
         {/* Regular Builds Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
