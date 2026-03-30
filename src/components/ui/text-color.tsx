@@ -9,7 +9,7 @@ export function TextColor() {
       <div className=" mb-10 mt-4 md:mt-6">
         <div className="px-2">
           <div className="relative p-8 w-full h-full border border-slate-200 dark:border-slate-800 [mask-image:radial-gradient(200rem_24rem_at_center,white,transparent)] border-none">
-            <h1 className="tracking-tighter flex select-none px-3 py-2 flex-col text-left lg:text-center text-6xl font-black leading-none sm:text-8xl lg:text-[8rem] md:flex-col lg:flex-row gap-0 lg:gap-8 justify-center items-start lg:items-center">
+            <h1 className="tracking-tighter flex select-none px-3 py-2 flex-col text-left lg:text-left text-6xl font-black leading-[0.85] sm:text-8xl lg:text-[8rem] justify-center items-start">
               
 
               <span

@@ -4,6 +4,16 @@ const nextConfig: NextConfig = {
   // Gzip/Brotli compress all responses
   compress: true,
 
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "cdn-icons-png.flaticon.com" },
+      { protocol: "https", hostname: "cdn.worldvectorlogo.com" },
+      { protocol: "https", hostname: "upload.wikimedia.org" },
+      { protocol: "https", hostname: "www.google.com" },
+      { protocol: "https", hostname: "images.unsplash.com" },
+    ],
+  },
+
   async headers() {
     return [
       {
