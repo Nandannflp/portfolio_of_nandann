@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ArrowLeft, Sparkles } from "lucide-react";
 import AIModelsCarousel from "@/components/ui/integration-hero";
 import GenieChatbot from "@/components/ui/genie-chatbot";
+import { VerticalImageStack } from "@/components/ui/vertical-image-stack";
 
 /* ─────────────────────────────────────────────────────────────
    Project Showcase Data
@@ -135,17 +136,8 @@ export default function ProjectsPage() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mb-24"
         >
-          <div className="flex items-center justify-center">
-            <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full border-2 border-dashed border-yellow-500/20 flex items-center justify-center bg-yellow-500/[0.03]">
-              {/* Orbiting ring effect */}
-              <div className="absolute inset-0 rounded-full border border-yellow-500/10 animate-spin" style={{ animationDuration: "20s" }} />
-              <div className="absolute inset-4 rounded-full border border-yellow-500/5 animate-spin" style={{ animationDuration: "30s", animationDirection: "reverse" }} />
-              <div className="text-center px-6">
-                <Sparkles className="w-8 h-8 text-yellow-500/40 mx-auto mb-3" />
-                <p className="text-sm text-yellow-500/50 font-medium tracking-wider uppercase">Image Carousel</p>
-                <p className="text-xs text-gray-600 mt-1">Coming Soon</p>
-              </div>
-            </div>
+          <div className="flex items-center justify-center w-full relative h-[600px] rounded-3xl overflow-hidden border border-yellow-500/10 bg-black/20">
+            <VerticalImageStack />
           </div>
         </motion.div>
 
