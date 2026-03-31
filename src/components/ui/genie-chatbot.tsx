@@ -31,7 +31,7 @@ export default function GenieChatbot({ projectName, description, onDismiss }: Ge
     };
   }, [projectName, dismiss]);
 
-  if (!projectName || phase === "gone") return null;
+  if (!projectName) return null;
 
   return (
     <AnimatePresence>
