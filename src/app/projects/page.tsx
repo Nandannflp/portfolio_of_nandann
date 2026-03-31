@@ -6,7 +6,7 @@ import Link from "next/link";
 import { ArrowLeft, Sparkles } from "lucide-react";
 import AIModelsCarousel from "@/components/ui/integration-hero";
 import GenieChatbot from "@/components/ui/genie-chatbot";
-import { VerticalImageStack } from "@/components/ui/vertical-image-stack";
+import { ImageCarouselHero } from "@/components/ui/ai-image-generator-hero";
 
 /* ─────────────────────────────────────────────────────────────
    Project Showcase Data
@@ -64,6 +64,24 @@ const showcaseProjects = [
 const futureProjects = [
   { name: "VEDA AI", tagline: "Ancient wisdom meets artificial intelligence", icon: "🕉️" },
   { name: "Apps", tagline: "A curated collection of micro-applications", icon: "📱" },
+];
+
+/* ─────────────────────────────────────────────────────────────
+   Posters & Features
+─────────────────────────────────────────────────────────────*/
+const showcasePosters = [
+  { id: "1", src: "/social/projects/Business_.png", alt: "Smart Services Poster", rotation: -15 },
+  { id: "2", src: "/social/projects/Hiring.png", alt: "Hiring Poster", rotation: -8 },
+  { id: "3", src: "/social/projects/Invitation_card.png", alt: "Amonkar's Cuisine Invitation", rotation: 5 },
+  { id: "4", src: "/social/projects/nspark.png", alt: "N-SPARXZ Releases", rotation: 12 },
+  { id: "5", src: "/social/projects/Banner.png", alt: "Sandeep Caterers Event Banner", rotation: -12 },
+  { id: "6", src: "/social/projects/Food Menu.png", alt: "Food Menu", rotation: 8 },
+];
+
+const portfolioFeatures = [
+  { title: "Brand Identity", description: "Crafting visually striking and modern creatives for real-world businesses." },
+  { title: "Growth Driven", description: "Focusing on engagement, conversion, and digital presence through bold design." },
+  { title: "AI Enhanced", description: "Leveraging generative AI models to accelerate production pipelines." },
 ];
 
 /* ─────────────────────────────────────────────────────────────
@@ -128,16 +146,24 @@ export default function ProjectsPage() {
         </div>
 
         {/* ══════════════════════════════════════════════
-            IMAGE CAROUSEL PLACEHOLDER (center)
+            IMAGE CAROUSEL HERO (center)
         ══════════════════════════════════════════════ */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mb-24"
+          className="mb-24 w-full"
         >
-          <div className="flex items-center justify-center w-full relative h-[600px] rounded-3xl overflow-hidden border border-yellow-500/10 bg-black/20">
-            <VerticalImageStack />
+          <div className="w-full relative rounded-3xl overflow-hidden border border-yellow-500/10 bg-[#0a0a0a]">
+             <ImageCarouselHero
+                title="Create Stunning Digital Art & Brand Creatives"
+                subtitle="Visual Aesthetics"
+                description="A showcase of real-world freelance projects, UI mockups, and client posters—built to engage and convert."
+                ctaText="Explore Creatives"
+                onCtaClick={() => window.scrollBy({ top: 800, behavior: 'smooth' })}
+                images={showcasePosters}
+                features={portfolioFeatures}
+              />
           </div>
         </motion.div>
 

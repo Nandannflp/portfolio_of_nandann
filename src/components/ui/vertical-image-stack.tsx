@@ -8,28 +8,33 @@ import { ArrowUp, ArrowDown } from "lucide-react"
 const images = [
   {
     id: 1,
-    src: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80",
-    alt: "Abstract liquid metal",
+    src: "/social/projects/Business_.png",
+    alt: "Smart Services Poster",
   },
   {
     id: 2,
-    src: "https://images.unsplash.com/photo-1614729939124-032f0b56c9ce?w=800&q=80",
-    alt: "Space abstract",
+    src: "/social/projects/Hiring.png",
+    alt: "Hiring Poster",
   },
   {
     id: 3,
-    src: "https://images.unsplash.com/photo-1506259091721-347e791bab0f?w=800&q=80",
-    alt: "Dark abstract geometry",
+    src: "/social/projects/Invitation_card.png",
+    alt: "Amonkar's Cuisine Invitation",
   },
   {
     id: 4,
-    src: "https://images.unsplash.com/photo-1604871000636-074fa5117945?w=800&q=80",
-    alt: "Dark abstract art",
+    src: "/social/projects/nspark.png",
+    alt: "N-SPARXZ Releases",
   },
   {
     id: 5,
-    src: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80",
-    alt: "Cyber security matrix",
+    src: "/social/projects/Banner.png",
+    alt: "Sandeep Caterers Event Banner",
+  },
+  {
+    id: 6,
+    src: "/social/projects/Food Menu.png",
+    alt: "Food Menu",
   },
 ]
 
