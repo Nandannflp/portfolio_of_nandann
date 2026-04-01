@@ -20,18 +20,18 @@ const identities = [
 ];
 
 const expertiseList = [
-  "Artificial Intelligence Integration",
-  "Website & Landing Page Design",
-  "Automation Systems & Workflows",
-  "Graphic Design & Visual Strategy",
-  "Digital Business Infrastructure",
-  "Conversion Focused Funnel Design",
-  "Entrepreneurial Coaching"
+  { name: "AI Integration", icon: "🤖" },
+  { name: "Web Design", icon: "🌐" },
+  { name: "Automation", icon: "⚙️" },
+  { name: "Graphic Design", icon: "🎨" },
+  { name: "Digital Infrastructure", icon: "🏗️" },
+  { name: "Funnel Design", icon: "📊" },
+  { name: "Business Coaching", icon: "🧠" }
 ];
 
 export default function Expertise() {
   return (
-    <section className="relative z-20 py-32 px-6 md:px-12 border-t border-white/5">
+    <section id="expertise" className="relative z-20 py-32 px-6 md:px-12 border-t border-white/5">
       <div className="max-w-7xl mx-auto">
         
         {/* Professional Identity */}
@@ -43,12 +43,17 @@ export default function Expertise() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {identities.map((item, idx) => (
-              <div key={idx} className="glass-card p-8 bg-black/40 border-white/10 group hover:-translate-y-1 hover:border-emerald-500/30 hover:bg-black/60 transition-all duration-300">
-                <div className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-emerald-500/20 group-hover:text-emerald-400 text-white/50 transition-colors duration-300">
-                   <span className="font-mono text-sm tracking-tighter">0{idx + 1}</span>
+              <div key={idx} className="glass-card flex flex-col justify-between p-8 bg-black/40 border-white/10 group hover:-translate-y-2 hover:border-emerald-500/50 hover:bg-black/80 transition-all duration-300 hover:shadow-[0_0_30px_rgba(16,185,129,0.15)]">
+                <div>
+                  <div className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-emerald-500/20 group-hover:text-emerald-400 text-white/50 transition-colors duration-300">
+                     <span className="font-mono text-sm tracking-tighter">0{idx + 1}</span>
+                  </div>
+                  <h3 className="text-2xl font-semibold text-white mb-3 tracking-wide">{item.role}</h3>
+                  <p className="text-gray-400 leading-relaxed font-light group-hover:text-gray-300 transition-colors duration-300">{item.desc}</p>
                 </div>
-                <h3 className="text-2xl font-semibold text-white mb-3 tracking-wide">{item.role}</h3>
-                <p className="text-gray-400 leading-relaxed font-light">{item.desc}</p>
+                <a href="#contact" className="mt-8 pt-4 border-t border-white/5 flex items-center text-sm font-medium text-emerald-500 opacity-0 transform translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                  Hire for This <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                </a>
               </div>
             ))}
           </div>
@@ -61,10 +66,16 @@ export default function Expertise() {
           </h2>
           <div className="flex flex-wrap gap-4">
             {expertiseList.map((skill, idx) => (
-              <div key={idx} className="px-6 py-4 glass-card border-white/10 bg-black/40 hover:bg-black/80 hover:border-cyan-500/40 transition-colors duration-300 font-light tracking-wide text-lg text-gray-200 cursor-default">
-                {skill}
+              <div key={idx} className="px-5 py-3 rounded-full border border-teal-500/30 bg-black/40 hover:bg-teal-900/40 hover:border-teal-400 transition-colors duration-300 text-sm md:text-base tracking-wide text-gray-200 cursor-default flex items-center gap-2 shadow-[0_0_10px_rgba(45,212,191,0.05)]">
+                <span className="text-lg">{skill.icon}</span> {skill.name}
               </div>
             ))}
+          </div>
+          
+          <div className="mt-16 flex justify-end md:justify-start">
+            <a href="#projects" className="inline-flex items-center justify-center px-8 py-4 text-sm font-bold bg-white text-black hover:bg-gray-200 transition-colors rounded-full uppercase tracking-wider">
+              See What I Can Build For You
+            </a>
           </div>
         </div>
 

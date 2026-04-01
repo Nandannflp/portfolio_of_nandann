@@ -24,7 +24,7 @@ export default function SplashScreen() {
   // Reading from sessionStorage natively inside useState causes React hydration mismatch errors.
   // Instead, run it after mount. Because elements inside start at opacity 0, there is no text flash.
   useEffect(() => {
-    if (sessionStorage.getItem("portfolio_user_name")) {
+    if (localStorage.getItem("portfolio_user_name")) {
       setPhase("done");
     }
   }, []);

@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function About() {
   return (
-    <section className="relative z-20 py-32 px-6 md:px-12 border-t border-white/5 overflow-hidden">
+    <section id="about" className="relative z-20 py-32 px-6 md:px-12 border-t border-white/5 overflow-hidden">
       {/* Background glow lines */}
       <div className="absolute top-0 left-1/4 w-72 h-72 bg-emerald-500/10 rounded-full blur-[80px] pointer-events-none"></div>
       <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-cyan-500/10 rounded-full blur-[80px] pointer-events-none"></div>
@@ -21,6 +21,12 @@ export default function About() {
             <p className="text-lg text-gray-400 leading-relaxed">
               My focus is on designing simple but powerful systems that turn ideas into income &mdash; without the burnout. From AI-powered tools to high-converting funnels, I build the engine so you can drive.
             </p>
+            <div className="pt-4">
+              <span className="text-xl text-white mr-4">Ready to build yours?</span>
+              <a href="#contact" className="inline-block px-6 py-3 rounded-full text-sm font-bold bg-white text-black hover:bg-gray-200 transition-all shadow-[0_0_15px_rgba(255,255,255,0.3)] hover:scale-105">
+                Book a Free Call
+              </a>
+            </div>
           </div>
           
           <div className="glass-card p-10 relative group border-white/10 bg-black/40 backdrop-blur-xl">
@@ -45,6 +51,26 @@ export default function About() {
             <p className="text-gray-400 leading-relaxed">
               Driven by curiosity, I combine scientific thinking with creative execution to build modern digital solutions. Today, I focus on helping individuals and brands build smarter digital ecosystems using modern tools.
             </p>
+          </div>
+        </div>
+
+        {/* Stats Strip */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-10 px-8 glass-card bg-black/50 border-white/10 mt-16 shadow-[0_0_40px_rgba(16,185,129,0.05)]">
+          <div className="text-center space-y-2">
+            <h3 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500">15+</h3>
+            <p className="text-sm font-medium tracking-widest text-emerald-400 uppercase">AI Systems Built</p>
+          </div>
+          <div className="text-center space-y-2">
+            <h3 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500">50+</h3>
+            <p className="text-sm font-medium tracking-widest text-emerald-400 uppercase">Entrepreneurs Coached</p>
+          </div>
+          <div className="text-center space-y-2">
+            <h3 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500">3+</h3>
+            <p className="text-sm font-medium tracking-widest text-emerald-400 uppercase">Countries Reached</p>
+          </div>
+          <div className="text-center space-y-2">
+            <h3 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500">100%</h3>
+            <p className="text-sm font-medium tracking-widest text-emerald-400 uppercase">Client Satisfaction</p>
           </div>
         </div>
       </div>
