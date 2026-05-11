@@ -20,13 +20,12 @@ export default function SplashScreen() {
   const [inputValue, setInputValue] = useState("");
   const { setUserName } = useUser();
 
-  // Fix: Safe Hydration Bypass! 
-  // Reading from sessionStorage natively inside useState causes React hydration mismatch errors.
-  // Instead, run it after mount. Because elements inside start at opacity 0, there is no text flash.
   useEffect(() => {
-    if (localStorage.getItem("portfolio_user_name")) {
-      setPhase("done");
-    }
+    const savedName = localStorage.getItem("portfolio_user_name");
+    if (!savedName) return;
+
+    const skipIntro = window.setTimeout(() => setPhase("done"), 0);
+    return () => window.clearTimeout(skipIntro);
   }, []);
 
   const show = phase !== "done";

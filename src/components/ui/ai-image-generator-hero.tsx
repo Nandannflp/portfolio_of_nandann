@@ -50,21 +50,19 @@ export function ImageCarouselHero({
 }: ImageCarouselHeroProps) {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isHovering, setIsHovering] = useState(false)
-  const [rotatingCards, setRotatingCards] = useState<number[]>([])
+  const [rotatingCards, setRotatingCards] = useState<number[]>(() =>
+    images.map((_, i) => i * (360 / images.length))
+  )
 
   // Continuous rotation animation
   useEffect(() => {
     const interval = setInterval(() => {
+      if (isHovering) return
       setRotatingCards((prev) => prev.map((_, i) => (prev[i] + 0.5) % 360))
     }, 50)
 
     return () => clearInterval(interval)
-  }, [])
-
-  // Initialize rotating cards
-  useEffect(() => {
-    setRotatingCards(images.map((_, i) => i * (360 / images.length)))
-  }, [images.length])
+  }, [isHovering])
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect()

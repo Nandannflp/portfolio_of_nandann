@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { Plus } from "lucide-react"; 
 
 export function TextColor() {
   return (

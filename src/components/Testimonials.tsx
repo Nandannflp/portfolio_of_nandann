@@ -43,7 +43,7 @@ export default function Testimonials() {
                 ))}
               </div>
               <p className="text-gray-300 italic mb-8 font-light text-lg leading-relaxed">
-                "{t.quote}"
+                &ldquo;{t.quote}&rdquo;
               </p>
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-500 to-emerald-500 flex justify-center items-center text-black font-bold text-lg">

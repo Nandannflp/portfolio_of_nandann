@@ -3,7 +3,7 @@
 import React, { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { ArrowLeft, Sparkles } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import AIModelsCarousel from "@/components/ui/integration-hero";
 import GenieChatbot from "@/components/ui/genie-chatbot";
 import { ImageCarouselHero } from "@/components/ui/ai-image-generator-hero";

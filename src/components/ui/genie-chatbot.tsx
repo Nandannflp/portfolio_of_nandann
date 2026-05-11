@@ -9,6 +9,17 @@ interface GenieChatbotProps {
   onDismiss: () => void;
 }
 
+const sparkles = [
+  { x: 34, y: 14, duration: 2.7, delay: 0.1 },
+  { x: 82, y: 63, duration: 3.1, delay: 0.5 },
+  { x: 156, y: 32, duration: 2.4, delay: 1.1 },
+  { x: 209, y: 78, duration: 3.5, delay: 0.8 },
+  { x: 261, y: 21, duration: 2.9, delay: 1.5 },
+  { x: 318, y: 58, duration: 3.7, delay: 0.2 },
+  { x: 366, y: 9, duration: 2.2, delay: 1.8 },
+  { x: 397, y: 89, duration: 3.3, delay: 1.0 },
+];
+
 export default function GenieChatbot({ projectName, description, onDismiss }: GenieChatbotProps) {
   const [phase, setPhase] = useState<"entering" | "visible" | "exiting" | "gone">("entering");
 
@@ -22,7 +33,6 @@ export default function GenieChatbot({ projectName, description, onDismiss }: Ge
 
   useEffect(() => {
     if (!projectName) return;
-    setPhase("entering");
     const showTimer = setTimeout(() => setPhase("visible"), 600);
     const hideTimer = setTimeout(() => dismiss(), 6000);
     return () => {
@@ -56,13 +66,13 @@ export default function GenieChatbot({ projectName, description, onDismiss }: Ge
           <div className="relative rounded-3xl border border-yellow-500/30 bg-black/90 backdrop-blur-2xl shadow-[0_0_60px_rgba(234,179,8,0.25)] p-6 overflow-hidden">
             {/* Magical sparkle particles */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
-              {[...Array(8)].map((_, i) => (
+              {sparkles.map((sparkle, i) => (
                 <motion.div
                   key={i}
                   className="absolute w-1 h-1 rounded-full bg-yellow-400"
                   initial={{ 
-                    x: Math.random() * 400, 
-                    y: Math.random() * 100,
+                    x: sparkle.x, 
+                    y: sparkle.y,
                     opacity: 0 
                   }}
                   animate={{ 
@@ -71,9 +81,9 @@ export default function GenieChatbot({ projectName, description, onDismiss }: Ge
                     scale: [0, 1.5, 0.5, 0]
                   }}
                   transition={{ 
-                    duration: 2 + Math.random() * 2, 
+                    duration: sparkle.duration, 
                     repeat: Infinity,
-                    delay: Math.random() * 2
+                    delay: sparkle.delay
                   }}
                 />
               ))}

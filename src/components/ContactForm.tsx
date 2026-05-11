@@ -51,10 +51,10 @@ export default function ContactForm() {
       <div className="max-w-4xl mx-auto relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white mb-6">
-            Let's Build Something <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">Powerful</span>
+            Let&apos;s Build Something Powerful
           </h2>
           <p className="text-lg text-gray-400 font-light max-w-2xl mx-auto">
-            Ready to upgrade your digital ecosystem? Fill out the form below and I'll get back to you within 24 hours.
+            Ready to upgrade your digital ecosystem? Fill out the form below and I&apos;ll get back to you within 24 hours.
           </p>
         </div>
 
@@ -71,7 +71,7 @@ export default function ContactForm() {
                 </svg>
               </div>
               <h3 className="text-3xl font-bold text-white mb-4">Got it!</h3>
-              <p className="text-gray-400 text-lg">Your message has been received. I'll get back to you within 24 hours.</p>
+              <p className="text-gray-400 text-lg">Your message has been received. I&apos;ll get back to you within 24 hours.</p>
             </motion.div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -134,7 +134,7 @@ export default function ContactForm() {
                     <option value="Under ₹10K" className="bg-gray-900 text-white">Under ₹10K</option>
                     <option value="₹10K - ₹50K" className="bg-gray-900 text-white">₹10K - ₹50K</option>
                     <option value="₹50K+" className="bg-gray-900 text-white">₹50K+</option>
-                    <option value="Let's discuss" className="bg-gray-900 text-white">Let's discuss</option>
+                    <option value="Let's discuss" className="bg-gray-900 text-white">Let&apos;s discuss</option>
                   </select>
                 </div>
               </div>

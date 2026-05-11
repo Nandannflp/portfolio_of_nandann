@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import ButtonWithIconDemo from '@/components/ui/button-witn-icon';
 import { TextColor } from '@/components/ui/text-color';
 import { useUser } from '@/context/UserContext';
 import Link from 'next/link';
@@ -28,7 +27,7 @@ export default function Hero() {
                 transition={{ duration: 0.5 }}
                 className="mb-8 inline-block px-5 py-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 font-medium tracking-wide ml-2"
               >
-                Welcome, {userName} — let's build your AI-powered system.
+                Welcome, {userName} — let&apos;s build your AI-powered system.
               </motion.div>
             )}
             <TextColor />

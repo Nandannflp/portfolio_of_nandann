@@ -59,7 +59,8 @@ class TextScramble {
     let complete = 0
     
     for (let i = 0, n = this.queue.length; i < n; i++) {
-      let { from, to, start, end, char } = this.queue[i]
+      const { from, to, start, end } = this.queue[i]
+      let { char } = this.queue[i]
       if (this.frame >= end) {
         complete++
         output += to
@@ -87,46 +88,42 @@ class TextScramble {
 const ScrambledTitle: React.FC<{ userName: string, onComplete?: () => void }> = ({ userName, onComplete }) => {
   const elementRef = useRef<HTMLHeadingElement>(null)
   const scramblerRef = useRef<TextScramble | null>(null)
-  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    if (elementRef.current && !scramblerRef.current) {
-      scramblerRef.current = new TextScramble(elementRef.current)
-      setMounted(true)
-    }
-  }, [])
+    if (!elementRef.current) return
 
-  useEffect(() => {
-    if (mounted && scramblerRef.current) {
-      const phrases = [
-        `Hello, ${userName || 'Guest'}!`,
-        'Be Ready to dive,',
-        'INTO my Horizon'
-      ]
-      
-      let counter = 0
-      let timeoutId: NodeJS.Timeout
-      
-      const next = () => {
-        if (scramblerRef.current) {
-          scramblerRef.current.setText(phrases[counter]).then(() => {
-            if (counter === phrases.length - 1 && onComplete) {
-              timeoutId = setTimeout(onComplete, 2000)
-            } else {
-              timeoutId = setTimeout(next, 2000)
-              counter = (counter + 1) % phrases.length
-            }
-          })
+    const scrambler = new TextScramble(elementRef.current)
+    scramblerRef.current = scrambler
+    const phrases = [
+      `Hello, ${userName || 'Guest'}!`,
+      'Be Ready to dive,',
+      'INTO my Horizon'
+    ]
+    
+    let counter = 0
+    let timeoutId: NodeJS.Timeout
+    
+    const next = () => {
+      scrambler.setText(phrases[counter]).then(() => {
+        if (counter === phrases.length - 1 && onComplete) {
+          timeoutId = setTimeout(onComplete, 2000)
+        } else {
+          timeoutId = setTimeout(next, 2000)
+          counter = (counter + 1) % phrases.length
         }
-      }
+      })
+    }
 
-      next()
-      
-      return () => {
-        if (timeoutId) clearTimeout(timeoutId)
+    next()
+    
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId)
+      cancelAnimationFrame(scrambler.frameRequest)
+      if (scramblerRef.current === scrambler) {
+        scramblerRef.current = null
       }
     }
-  }, [mounted, userName, onComplete])
+  }, [userName, onComplete])
 
   return (
     <h1 
