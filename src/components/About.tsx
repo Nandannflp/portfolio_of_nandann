@@ -23,7 +23,7 @@ export default function About() {
             </p>
             <div className="pt-4">
               <span className="text-xl text-white mr-4">Ready to build yours?</span>
-              <a href="#contact" className="group relative inline-flex items-center justify-center overflow-hidden rounded-full border border-white bg-gradient-to-r from-emerald-400 to-cyan-400 px-6 py-3 text-sm font-bold text-black shadow-[0_0_22px_rgba(16,185,129,0.35)] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_34px_rgba(45,212,191,0.55)]">
+              <a href="#contact" className="group relative inline-flex items-center justify-center overflow-hidden rounded-full animate-border-flicker bg-gradient-to-r from-emerald-400 to-cyan-400 px-6 py-3 text-sm font-bold text-black transition-all duration-300 hover:scale-105 hover:shadow-[0_0_34px_rgba(45,212,191,0.55)]">
                 <span className="absolute inset-0 animate-pulse rounded-full bg-white/20"></span>
                 <span className="absolute -left-10 top-0 h-full w-8 -skew-x-12 bg-white/45 blur-sm transition-transform duration-700 group-hover:translate-x-[240px]"></span>
                 <span className="relative z-10 flex items-center gap-2">
