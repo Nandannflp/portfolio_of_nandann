@@ -12,6 +12,7 @@ import Pricing from "@/components/Pricing";
 import BusinessOwners from "@/components/BusinessOwners";
 import Projects from "@/components/Projects";
 import ContactForm from "@/components/ContactForm";
+import ToolsMarquee from "@/components/ToolsMarquee";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -60,6 +61,9 @@ export default function Home() {
         
         {/* Contact Form */}
         <ContactForm />
+
+        {/* Tools Used Marquee */}
+        <ToolsMarquee />
         
         {/* Full Footer */}
         <Footer />

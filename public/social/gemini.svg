@@ -1,0 +1,11 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" rx="112" fill="black"/>
+  <path d="M256 52C279 171 341 233 460 256C341 279 279 341 256 460C233 341 171 279 52 256C171 233 233 171 256 52Z" fill="url(#geminiGradient)"/>
+  <defs>
+    <linearGradient id="geminiGradient" x1="112" y1="96" x2="400" y2="416" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#78E8FF"/>
+      <stop offset="0.45" stop-color="#A78BFA"/>
+      <stop offset="1" stop-color="#F472B6"/>
+    </linearGradient>
+  </defs>
+</svg>
