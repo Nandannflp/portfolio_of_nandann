@@ -222,19 +222,19 @@ body {
 @keyframes border-flicker {
   0%, 100% { 
     border-color: rgba(255, 255, 255, 0.8); 
-    box-shadow: 0 0 8px rgba(57, 255, 20, 0.3); 
+    box-shadow: 0 0 8px rgba(52, 211, 153, 0.3); 
   }
   30% { 
-    border-color: rgba(57, 255, 20, 0.9); 
-    box-shadow: 0 0 15px rgba(57, 255, 20, 0.8), inset 0 0 8px rgba(57, 255, 20, 0.4); 
+    border-color: rgba(52, 211, 153, 0.9); 
+    box-shadow: 0 0 15px rgba(52, 211, 153, 0.8), inset 0 0 8px rgba(52, 211, 153, 0.4); 
   }
   50% { 
     border-color: rgba(255, 255, 255, 0.9); 
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); 
   }
   70% { 
-    border-color: rgba(57, 255, 20, 1); 
-    box-shadow: 0 0 20px rgba(57, 255, 20, 1), inset 0 0 10px rgba(57, 255, 20, 0.6); 
+    border-color: rgba(52, 211, 153, 1); 
+    box-shadow: 0 0 20px rgba(52, 211, 153, 1), inset 0 0 10px rgba(52, 211, 153, 0.6); 
   }
 }
 
