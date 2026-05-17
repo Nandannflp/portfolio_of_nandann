@@ -82,13 +82,18 @@ export default function Pricing() {
               
               <a 
                 href="#contact" 
-                className={`w-full text-center py-4 rounded-full font-bold uppercase tracking-wider text-sm transition-all
+                className={`group relative flex w-full items-center justify-center overflow-hidden rounded-full py-4 text-center text-sm font-bold uppercase tracking-wider transition-all duration-300 hover:scale-[1.03]
                   ${plan.popular 
-                    ? 'bg-gradient-to-r from-cyan-400 to-emerald-400 text-black shadow-[0_0_15px_rgba(34,211,238,0.4)] hover:shadow-[0_0_25px_rgba(34,211,238,0.6)]' 
-                    : 'bg-white/10 text-white hover:bg-white/20'
+                    ? 'bg-gradient-to-r from-cyan-400 to-emerald-400 text-black shadow-[0_0_24px_rgba(34,211,238,0.45)] hover:shadow-[0_0_36px_rgba(34,211,238,0.65)]' 
+                    : 'border border-white/15 bg-white/10 text-white shadow-[0_0_18px_rgba(255,255,255,0.08)] hover:bg-white/20 hover:shadow-[0_0_28px_rgba(255,255,255,0.16)]'
                   }`}
               >
-                {plan.cta}
+                <span className={`absolute inset-0 rounded-full ${plan.popular ? 'animate-pulse bg-white/20' : 'animate-pulse bg-emerald-400/10'}`}></span>
+                <span className="absolute -left-12 top-0 h-full w-10 -skew-x-12 bg-white/40 blur-sm transition-transform duration-700 group-hover:translate-x-[340px]"></span>
+                <span className="relative z-10 flex items-center gap-2">
+                  {plan.cta}
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+                </span>
               </a>
             </div>
           ))}

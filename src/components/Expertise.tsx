@@ -20,13 +20,13 @@ const identities = [
 ];
 
 const expertiseList = [
-  { name: "AI Integration", icon: "🤖" },
-  { name: "Web Design", icon: "🌐" },
-  { name: "Automation", icon: "⚙️" },
-  { name: "Graphic Design", icon: "🎨" },
-  { name: "Digital Infrastructure", icon: "🏗️" },
-  { name: "Funnel Design", icon: "📊" },
-  { name: "Business Coaching", icon: "🧠" }
+  { name: "AI Integration", icon: "🤖", detail: "Smart workflows" },
+  { name: "Web Design", icon: "🌐", detail: "Modern websites" },
+  { name: "Automation", icon: "⚙️", detail: "Less manual work" },
+  { name: "Graphic Design", icon: "🎨", detail: "Visual identity" },
+  { name: "Digital Infrastructure", icon: "🏗️", detail: "Systems that scale" },
+  { name: "Funnel Design", icon: "📊", detail: "Lead conversion" },
+  { name: "Business Coaching", icon: "🧠", detail: "Clarity and growth" }
 ];
 
 export default function Expertise() {
@@ -64,18 +64,39 @@ export default function Expertise() {
           <h2 className="text-4xl md:text-5xl font-bold mb-16 tracking-tight text-white border-l-4 border-cyan-500 pl-6 text-right md:text-left">
             Core <span className="font-alex-brush text-gray-500 font-normal lowercase tracking-normal text-6xl md:text-7xl lg:text-8xl px-1">expertise.</span>
           </h2>
-          <div className="flex flex-wrap gap-4 md:gap-5">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {expertiseList.map((skill, idx) => (
               <div
                 key={idx}
-                className="group flex cursor-default items-center gap-3 rounded-full border border-cyan-400/25 bg-white/[0.04] px-6 py-4 text-sm font-semibold tracking-wide text-white shadow-[0_0_24px_rgba(45,212,191,0.06)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/60 hover:bg-white/[0.08] hover:shadow-[0_0_30px_rgba(45,212,191,0.18)] md:text-base"
+                className="group relative min-h-36 overflow-hidden rounded-2xl border border-cyan-300/25 bg-black/45 p-5 shadow-[0_0_28px_rgba(45,212,191,0.08)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-emerald-300/60 hover:bg-black/65 hover:shadow-[0_0_40px_rgba(16,185,129,0.22)]"
               >
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-cyan-400/20 to-emerald-400/20 text-lg ring-1 ring-white/10 transition-transform duration-300 group-hover:scale-110">
-                  {skill.icon}
-                </span>
-                <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent group-hover:from-cyan-100 group-hover:to-emerald-100">
-                  {skill.name}
-                </span>
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/70 to-transparent"></div>
+                <div className="absolute -right-12 -top-12 h-28 w-28 rounded-full bg-emerald-400/10 blur-2xl transition-opacity duration-300 group-hover:opacity-100"></div>
+
+                <div className="relative z-10 flex h-full flex-col justify-between gap-6">
+                  <div className="flex items-center justify-between">
+                    <span className="relative flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-400/25 to-emerald-400/25 text-2xl ring-1 ring-white/15">
+                      <span className="absolute inset-0 rounded-2xl bg-cyan-300/20 opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-100"></span>
+                      <span className="relative">{skill.icon}</span>
+                    </span>
+                    <span className="font-mono text-xs font-bold tracking-widest text-emerald-300/80">
+                      0{idx + 1}
+                    </span>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-black uppercase tracking-wide text-white">
+                      {skill.name}
+                    </h3>
+                    <p className="mt-2 text-sm font-medium tracking-wide text-cyan-100/80">
+                      {skill.detail}
+                    </p>
+                  </div>
+
+                  <div className="h-1 overflow-hidden rounded-full bg-white/10">
+                    <div className="h-full w-1/2 rounded-full bg-gradient-to-r from-emerald-400 to-cyan-300 transition-all duration-500 group-hover:w-full"></div>
+                  </div>
+                </div>
               </div>
             ))}
           </div>

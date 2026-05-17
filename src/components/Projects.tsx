@@ -87,8 +87,13 @@ export default function Projects() {
         </div>
 
         <div className="text-center mt-20">
-          <a href="#contact" className="inline-block px-10 py-5 rounded-full text-lg font-bold text-black bg-gradient-to-r from-emerald-400 to-cyan-400 hover:scale-105 transition-transform shadow-[0_0_30px_rgba(16,185,129,0.3)]">
-            Start Your Project Today &rarr;
+          <a href="#contact" className="group relative inline-flex items-center justify-center overflow-hidden rounded-full bg-gradient-to-r from-emerald-400 to-cyan-400 px-10 py-5 text-lg font-bold text-black shadow-[0_0_30px_rgba(16,185,129,0.35)] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_45px_rgba(45,212,191,0.55)]">
+            <span className="absolute inset-0 animate-pulse rounded-full bg-white/20"></span>
+            <span className="absolute -left-16 top-0 h-full w-12 -skew-x-12 bg-white/50 blur-sm transition-transform duration-700 group-hover:translate-x-[420px]"></span>
+            <span className="relative z-10 flex items-center gap-2">
+              Start Your Project Today
+              <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+            </span>
           </a>
         </div>
       </div>

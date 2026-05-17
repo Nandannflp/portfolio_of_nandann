@@ -46,6 +46,7 @@ export default function ContactForm() {
 
   return (
     <section id="contact" className="relative z-20 py-32 px-6 md:px-12 border-t border-white/5 bg-black">
+      <div className="absolute inset-x-0 -top-40 h-40 bg-gradient-to-b from-transparent to-black pointer-events-none"></div>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-lg h-[500px] bg-emerald-500/10 rounded-full blur-[120px] pointer-events-none"></div>
       
       <div className="max-w-4xl mx-auto relative z-10">
