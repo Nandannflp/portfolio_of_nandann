@@ -18,14 +18,15 @@ export default function ToolsMarquee() {
   const repeatedTools = [...tools, ...tools, ...tools];
 
   return (
-    <section className="relative z-20 overflow-hidden border-y border-white/10 bg-white/[0.03] py-10 backdrop-blur-sm">
+    <section className="relative z-20 overflow-hidden bg-white/[0.02] py-10 backdrop-blur-sm">
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black via-transparent to-black"></div>
       <div className="mx-auto mb-8 max-w-7xl px-6 md:px-12">
-        <h2 className="text-center text-sm font-bold uppercase tracking-[0.35em] text-emerald-400">
+        <h2 className="relative text-center text-sm font-bold uppercase tracking-[0.35em] text-emerald-400">
           Tools Used
         </h2>
       </div>
 
-      <div className="flex overflow-hidden whitespace-nowrap">
+      <div className="relative flex overflow-hidden whitespace-nowrap">
         <div className="flex animate-[marquee_110s_linear_infinite] gap-5 pr-5">
           {repeatedTools.map((tool, index) => (
             <div

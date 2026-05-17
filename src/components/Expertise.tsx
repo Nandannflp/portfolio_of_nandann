@@ -1,4 +1,5 @@
 import React from 'react';
+import { Bot, Globe, Cog, Palette, Server, BarChart3, Brain } from 'lucide-react';
 
 const identities = [
   {
@@ -20,13 +21,13 @@ const identities = [
 ];
 
 const expertiseList = [
-  { name: "AI Integration", icon: "🤖", detail: "Smart workflows" },
-  { name: "Web Design", icon: "🌐", detail: "Modern websites" },
-  { name: "Automation", icon: "⚙️", detail: "Less manual work" },
-  { name: "Graphic Design", icon: "🎨", detail: "Visual identity" },
-  { name: "Digital Infrastructure", icon: "🏗️", detail: "Systems that scale" },
-  { name: "Funnel Design", icon: "📊", detail: "Lead conversion" },
-  { name: "Business Coaching", icon: "🧠", detail: "Clarity and growth" }
+  { name: "AI Integration", icon: Bot, detail: "Smart workflows" },
+  { name: "Web Design", icon: Globe, detail: "Modern websites" },
+  { name: "Automation", icon: Cog, detail: "Less manual work" },
+  { name: "Graphic Design", icon: Palette, detail: "Visual identity" },
+  { name: "Digital Infrastructure", icon: Server, detail: "Systems that scale" },
+  { name: "Funnel Design", icon: BarChart3, detail: "Lead conversion" },
+  { name: "Business Coaching", icon: Brain, detail: "Clarity and growth" }
 ];
 
 export default function Expertise() {
@@ -77,7 +78,7 @@ export default function Expertise() {
                   <div className="flex items-center justify-between">
                     <span className="relative flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-400/25 to-emerald-400/25 text-2xl ring-1 ring-white/15">
                       <span className="absolute inset-0 rounded-2xl bg-cyan-300/20 opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-100"></span>
-                      <span className="relative">{skill.icon}</span>
+                      <skill.icon className="relative w-6 h-6 text-emerald-300" strokeWidth={1.8} />
                     </span>
                     <span className="font-mono text-xs font-bold tracking-widest text-emerald-300/80">
                       0{idx + 1}

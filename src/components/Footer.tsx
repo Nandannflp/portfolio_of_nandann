@@ -1,11 +1,12 @@
 import React from 'react';
+import { Mail, MapPin, Leaf, Bot, Lightbulb } from 'lucide-react';
 
 export default function Footer() {
   const quickLinks = [
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
     { name: 'Services', href: '#expertise' },
-    { name: 'Projects', href: '#projects' },
+    { name: 'Social Media', href: '#projects' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -24,13 +25,13 @@ export default function Footer() {
             </p>
             <div className="space-y-2 text-sm text-gray-500">
               <p className="flex items-center gap-2">
-                <span>📧</span>
+                <Mail className="w-4 h-4 text-emerald-400" />
                 <a href="mailto:hello@nandannshetye.online" className="hover:text-emerald-400 transition-colors">
                   hello@nandannshetye.online
                 </a>
               </p>
               <p className="flex items-center gap-2">
-                <span>📍</span>
+                <MapPin className="w-4 h-4 text-emerald-400" />
                 <span>Goa, India</span>
               </p>
             </div>
@@ -91,7 +92,7 @@ export default function Footer() {
                 className="flex items-center gap-3 group"
               >
                 <div className="w-10 h-10 rounded-lg border border-white/10 flex items-center justify-center bg-white/5 group-hover:bg-emerald-500/20 group-hover:border-emerald-500/40 transition-colors">
-                  <span className="text-gray-400 group-hover:text-emerald-400 transition-colors text-lg font-bold">🌿</span>
+                  <Leaf className="w-5 h-5 text-gray-400 group-hover:text-emerald-400 transition-colors" />
                 </div>
                 <span className="text-gray-400 text-sm group-hover:text-white transition-colors">Linktree</span>
               </a>
@@ -105,7 +106,7 @@ export default function Footer() {
             © 2026 Nandann Shetye. <span className="text-white font-medium ml-1">Create. Deliver. Dominate.</span>
           </p>
           <p className="text-sm text-gray-600">
-            Built with 🤖 AI + 💡 Strategy
+            Built with <Bot className="inline w-4 h-4 mx-1 text-emerald-400" /> AI + <Lightbulb className="inline w-4 h-4 mx-1 text-cyan-400" /> Strategy
           </p>
         </div>
       </div>

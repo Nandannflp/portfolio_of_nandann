@@ -3,7 +3,7 @@
 import React, { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Bot, Brain, Search, Gem, Sparkles, Smartphone } from "lucide-react";
 import AIModelsCarousel from "@/components/ui/integration-hero";
 import GenieChatbot from "@/components/ui/genie-chatbot";
 import { ImageCarouselHero } from "@/components/ui/ai-image-generator-hero";
@@ -16,7 +16,7 @@ const showcaseProjects = [
     id: "chatgpt",
     name: "ChatGPT",
     tagline: "OpenAI's Flagship",
-    icon: "🤖",
+    icon: Bot,
     gradient: "from-[#10a37f] to-[#1a7f5a]",
     borderColor: "border-[#10a37f]/30",
     glowColor: "rgba(16,163,127,0.3)",
@@ -27,7 +27,7 @@ const showcaseProjects = [
     id: "claude",
     name: "Claude",
     tagline: "Anthropic's Deep Thinker",
-    icon: "🧠",
+    icon: Brain,
     gradient: "from-[#d97706] to-[#b45309]",
     borderColor: "border-[#d97706]/30",
     glowColor: "rgba(217,119,6,0.3)",
@@ -38,7 +38,7 @@ const showcaseProjects = [
     id: "perplexity",
     name: "Perplexity",
     tagline: "AI-Powered Search",
-    icon: "🔍",
+    icon: Search,
     gradient: "from-[#20b2aa] to-[#008b8b]",
     borderColor: "border-[#20b2aa]/30",
     glowColor: "rgba(32,178,170,0.3)",
@@ -49,7 +49,7 @@ const showcaseProjects = [
     id: "gemini",
     name: "Gemini",
     tagline: "Google's Multimodal AI",
-    icon: "💎",
+    icon: Gem,
     gradient: "from-[#4285f4] to-[#1a73e8]",
     borderColor: "border-[#4285f4]/30",
     glowColor: "rgba(66,133,244,0.3)",
@@ -62,8 +62,8 @@ const showcaseProjects = [
    Future Projects (teasers)
 ─────────────────────────────────────────────────────────────*/
 const futureProjects = [
-  { name: "VEDA AI", tagline: "Ancient wisdom meets artificial intelligence", icon: "🕉️" },
-  { name: "Apps", tagline: "A curated collection of micro-applications", icon: "📱" },
+  { name: "VEDA AI", tagline: "Ancient wisdom meets artificial intelligence", icon: Sparkles },
+  { name: "Apps", tagline: "A curated collection of micro-applications", icon: Smartphone },
 ];
 
 /* ─────────────────────────────────────────────────────────────
@@ -215,8 +215,8 @@ export default function ProjectsPage() {
                 <div className="relative z-10 p-8 md:p-10">
                   {/* Icon + Title */}
                   <div className="flex items-center gap-4 mb-4">
-                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${project.gradient} flex items-center justify-center text-2xl shadow-lg`}>
-                      {project.icon}
+                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${project.gradient} flex items-center justify-center shadow-lg`}>
+                      <project.icon className="w-7 h-7 text-white" strokeWidth={1.8} />
                     </div>
                     <div>
                       <h3 className="text-xl font-bold text-white group-hover:text-yellow-400 transition-colors">
@@ -261,8 +261,8 @@ export default function ProjectsPage() {
                 className="relative rounded-3xl overflow-hidden border border-white/5 bg-black/30 p-8 md:p-10"
               >
                 <div className="flex items-center gap-4 mb-3">
-                  <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-xl">
-                    {project.icon}
+                  <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
+                    <project.icon className="w-6 h-6 text-gray-400" strokeWidth={1.8} />
                   </div>
                   <div>
                     <h3 className="text-lg font-bold text-gray-400">{project.name}</h3>
