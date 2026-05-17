@@ -25,7 +25,7 @@ export default function ToolsMarquee() {
       </div>
 
       <div className="flex overflow-hidden whitespace-nowrap">
-        <div className="flex animate-[marquee_55s_linear_infinite] gap-5 pr-5">
+        <div className="flex animate-[marquee_110s_linear_infinite] gap-5 pr-5">
           {repeatedTools.map((tool, index) => (
             <div
               key={`${tool.name}-${index}`}
