@@ -64,19 +64,22 @@ export default function Expertise() {
           <h2 className="text-4xl md:text-5xl font-bold mb-16 tracking-tight text-white border-l-4 border-cyan-500 pl-6 text-right md:text-left">
             Core <span className="font-alex-brush text-gray-500 font-normal lowercase tracking-normal text-6xl md:text-7xl lg:text-8xl px-1">expertise.</span>
           </h2>
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-4 md:gap-5">
             {expertiseList.map((skill, idx) => (
-              <div key={idx} className="px-5 py-3 rounded-full border border-teal-500/30 bg-black/40 hover:bg-teal-900/40 hover:border-teal-400 transition-colors duration-300 text-sm md:text-base tracking-wide text-gray-200 cursor-default flex items-center gap-2 shadow-[0_0_10px_rgba(45,212,191,0.05)]">
-                <span className="text-lg">{skill.icon}</span> {skill.name}
+              <div
+                key={idx}
+                className="group flex cursor-default items-center gap-3 rounded-full border border-cyan-400/25 bg-white/[0.04] px-6 py-4 text-sm font-semibold tracking-wide text-white shadow-[0_0_24px_rgba(45,212,191,0.06)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/60 hover:bg-white/[0.08] hover:shadow-[0_0_30px_rgba(45,212,191,0.18)] md:text-base"
+              >
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-cyan-400/20 to-emerald-400/20 text-lg ring-1 ring-white/10 transition-transform duration-300 group-hover:scale-110">
+                  {skill.icon}
+                </span>
+                <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent group-hover:from-cyan-100 group-hover:to-emerald-100">
+                  {skill.name}
+                </span>
               </div>
             ))}
           </div>
           
-          <div className="mt-16 flex justify-end md:justify-start">
-            <a href="#projects" className="inline-flex items-center justify-center px-8 py-4 text-sm font-bold bg-white text-black hover:bg-gray-200 transition-colors rounded-full uppercase tracking-wider">
-              See What I Can Build For You
-            </a>
-          </div>
         </div>
 
       </div>

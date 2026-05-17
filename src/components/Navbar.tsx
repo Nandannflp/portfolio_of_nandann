@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { ArrowRight, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export default function Navbar() {
@@ -55,9 +55,10 @@ export default function Navbar() {
             ))}
             <a
               href="#contact"
-              className="px-5 py-2.5 rounded-full text-sm font-bold text-black bg-gradient-to-r from-cyan-400 to-emerald-400 hover:from-cyan-300 hover:to-emerald-300 transition-all shadow-[0_0_15px_rgba(45,212,191,0.4)]"
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-cyan-300/40 bg-gradient-to-r from-cyan-400 to-emerald-400 px-6 text-sm font-bold text-black shadow-[0_0_18px_rgba(45,212,191,0.35)] transition-all hover:scale-105 hover:from-cyan-300 hover:to-emerald-300 hover:shadow-[0_0_28px_rgba(45,212,191,0.55)]"
             >
-              Book a Call &rarr;
+              Book a Call
+              <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
             </a>
           </nav>
 
@@ -94,9 +95,10 @@ export default function Navbar() {
             <a
               href="#contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="mt-4 px-8 py-4 rounded-full text-lg font-bold text-black bg-gradient-to-r from-cyan-400 to-emerald-400 shadow-[0_0_20px_rgba(45,212,191,0.5)]"
+              className="mt-4 inline-flex h-14 items-center justify-center gap-2 rounded-full border border-cyan-300/40 bg-gradient-to-r from-cyan-400 to-emerald-400 px-8 text-lg font-bold text-black shadow-[0_0_24px_rgba(45,212,191,0.5)]"
             >
-              Book a Call &rarr;
+              Book a Call
+              <ArrowRight className="h-5 w-5" strokeWidth={2.5} />
             </a>
           </motion.div>
         )}

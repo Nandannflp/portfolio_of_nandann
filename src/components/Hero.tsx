@@ -27,7 +27,7 @@ export default function Hero() {
                 transition={{ duration: 0.5 }}
                 className="mb-8 inline-block px-5 py-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 font-medium tracking-wide ml-2"
               >
-                Welcome, {userName} — let&apos;s build your AI-powered system.
+                Hi, This is Nandann, Lets build your first or second or third website with me
               </motion.div>
             )}
             <TextColor />

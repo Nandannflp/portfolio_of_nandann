@@ -7,7 +7,7 @@ export default function BusinessOwners() {
       
       <div className="max-w-4xl mx-auto text-center relative z-10 glass-card p-12 md:p-16 border-white/10 bg-black/40 backdrop-blur-xl shadow-2xl">
         <h2 className="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white mb-6">
-          Are you a <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">Business Owner?</span>
+          Are you a <span className="text-white">Business Owner?</span>
         </h2>
         
         <p className="text-xl md:text-2xl font-light text-gray-300 mb-10 leading-relaxed">

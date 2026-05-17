@@ -11,7 +11,7 @@ export default function Philosophy() {
         
         {/* Philosophy Block */}
         <div className="text-center space-y-12">
-          <h2 className="text-5xl md:text-6xl font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500">
+          <h2 className="text-5xl md:text-6xl font-black uppercase tracking-tighter text-white">
             My Approach
           </h2>
           <div className="glass-card p-10 md:p-16 inline-block text-left w-full backdrop-blur-3xl bg-black/60 border-white/10 shadow-2xl">

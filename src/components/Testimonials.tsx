@@ -26,7 +26,7 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="relative z-20 py-32 px-6 md:px-12 border-t border-white/5 bg-black">
+    <section id="testimonials" className="relative z-20 py-32 px-6 md:px-12 border-t border-white/5">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold mb-16 tracking-tight text-white border-l-4 border-cyan-500 pl-6">
           What <span className="font-alex-brush text-cyan-400 font-normal tracking-normal text-6xl md:text-7xl lg:text-8xl px-1">clients say.</span>
@@ -34,7 +34,7 @@ export default function Testimonials() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((t, idx) => (
-            <div key={idx} className="glass-card p-10 bg-black/40 border-white/10 hover:-translate-y-2 hover:border-cyan-500/30 transition-all duration-300">
+            <div key={idx} className="glass-card p-10 bg-white/[0.04] border-white/10 hover:-translate-y-2 hover:bg-white/[0.07] hover:border-cyan-500/30 transition-all duration-300">
               <div className="flex gap-1 mb-6 text-yellow-500">
                 {[...Array(t.rating)].map((_, i) => (
                   <svg key={i} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">

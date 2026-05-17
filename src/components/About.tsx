@@ -57,19 +57,19 @@ export default function About() {
         {/* Stats Strip */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-10 px-8 glass-card bg-black/50 border-white/10 mt-16 shadow-[0_0_40px_rgba(16,185,129,0.05)]">
           <div className="text-center space-y-2">
-            <h3 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500">15+</h3>
+            <h3 className="text-4xl md:text-5xl font-black text-white">15+</h3>
             <p className="text-sm font-medium tracking-widest text-emerald-400 uppercase">AI Systems Built</p>
           </div>
           <div className="text-center space-y-2">
-            <h3 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500">50+</h3>
+            <h3 className="text-4xl md:text-5xl font-black text-white">50+</h3>
             <p className="text-sm font-medium tracking-widest text-emerald-400 uppercase">Entrepreneurs Coached</p>
           </div>
           <div className="text-center space-y-2">
-            <h3 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500">3+</h3>
+            <h3 className="text-4xl md:text-5xl font-black text-white">3+</h3>
             <p className="text-sm font-medium tracking-widest text-emerald-400 uppercase">Countries Reached</p>
           </div>
           <div className="text-center space-y-2">
-            <h3 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500">100%</h3>
+            <h3 className="text-4xl md:text-5xl font-black text-white">100%</h3>
             <p className="text-sm font-medium tracking-widest text-emerald-400 uppercase">Client Satisfaction</p>
           </div>
         </div>
