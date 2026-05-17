@@ -36,7 +36,7 @@ export default function Hero() {
           <div className="w-full max-w-2xl pt-8">
             <p className="text-2xl md:text-3xl lg:text-4xl text-white font-light tracking-tight leading-tight">
               I turn ideas into <br />
-              <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400 border-b border-emerald-500/30 pb-1">
+              <span className="font-semibold text-white border-b border-white/20 pb-1">
                 <span className="font-alex-brush text-white font-normal lowercase text-6xl md:text-8xl lg:text-9xl tracking-normal mr-2">automated</span> digital systems.
               </span>
             </p>
