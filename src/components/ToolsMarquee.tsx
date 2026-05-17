@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 const tools = [
   { name: 'ChatGPT', src: '/social/chatgpt.png' },
@@ -32,9 +33,11 @@ export default function ToolsMarquee() {
               className="group flex min-w-max items-center gap-4 rounded-full border border-cyan-400/20 bg-black/20 px-6 py-4 shadow-[0_0_24px_rgba(45,212,191,0.06)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-emerald-300/50 hover:bg-white/[0.07]"
             >
               <span className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl bg-white/[0.06] ring-1 ring-white/10">
-                <img
+                <Image
                   src={tool.src}
                   alt={`${tool.name} logo`}
+                  width={36}
+                  height={36}
                   className="h-9 w-9 object-contain"
                 />
               </span>
