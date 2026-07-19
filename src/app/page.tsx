@@ -1,72 +1,75 @@
-import Navbar from "@/components/Navbar";
 import FixedCanvas from "@/components/FixedCanvas";
-import SidebarName from "@/components/SidebarName";
-import Hero from "@/components/Hero";
-import MarqueeStrip from "@/components/MarqueeStrip";
-import About from "@/components/About";
-import Expertise from "@/components/Expertise";
-import HowItWorks from "@/components/HowItWorks";
-import Testimonials from "@/components/Testimonials";
-import Philosophy from "@/components/Philosophy";
-import Pricing from "@/components/Pricing";
-import BusinessOwners from "@/components/BusinessOwners";
-import Projects from "@/components/Projects";
-import ContactForm from "@/components/ContactForm";
-import ToolsMarquee from "@/components/ToolsMarquee";
-import Footer from "@/components/Footer";
+import CyberpunkHero from "@/components/CyberpunkHero";
+import SectionScroller from "@/components/SectionScroller";
+import AboutSection from "@/components/AboutSection";
+import ProjectsSection from "@/components/ProjectsSection";
+import ServicesSection from "@/components/ServicesSection";
+import BusinessSection from "@/components/BusinessSection";
+import ContactSection from "@/components/ContactSection";
+import StickyAvatar from "@/components/StickyAvatar";
 
 export default function Home() {
   return (
     <main className="relative flex flex-col min-h-screen bg-black" suppressHydrationWarning={true}>
-      {/* Sticky Navigation Bar */}
-      <Navbar />
       
-      <SidebarName />
       {/* 
         FixedCanvas acts as the absolute background for the entire page, 
         tracking window scroll to scrub the images.
       */}
       <FixedCanvas />
       
+      {/* Global Scroll Indicator */}
+      <SectionScroller />
+      
       <div className="relative z-10 w-full flex flex-col">
-        {/* Hero Section */}
-        <Hero />
+        {/* Section 1: Hero */}
+        <section id="home" className="min-h-screen flex flex-col">
+          <CyberpunkHero />
+        </section>
         
-        {/* Marquee Ticker - transitions into About */}
-        <MarqueeStrip />
-        
-        {/* About + Stats Strip */}
-        <About />
-        
-        {/* How We Work Together */}
-        <HowItWorks />
-        
-        {/* Services / What I Do */}
-        <Expertise />
-        
-        {/* Testimonials / Social Proof */}
-        <Testimonials />
-        
-        {/* For Business Owners CTA Banner */}
-        <BusinessOwners />
+        {/* Main Content Area with Sticky Avatar */}
+        <div className="relative w-full flex flex-col lg:flex-row bg-cp-dark border-t border-white/10">
+          {/* Sticky Avatar Column (Left) */}
+          <div className="hidden lg:block lg:w-[45%] relative z-10 border-r border-white/10">
+            {/* Cyberpunk Grid Background */}
+            <div className="absolute inset-0 z-0 opacity-20"
+              style={{
+                backgroundImage: 'linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)',
+                backgroundSize: '40px 40px'
+              }}
+            ></div>
+            
+            <StickyAvatar />
+          </div>
 
-        {/* Pricing Plans */}
-        <Pricing />
-        
-        {/* Philosophy / Systems Thinking */}
-        <Philosophy />
-        
-        {/* Projects / Case Studies */}
-        <Projects />
-        
-        {/* Contact Form */}
-        <ContactForm />
+          {/* Scrolling Sections (Right) */}
+          <div className="w-full lg:w-[55%] block relative z-30">
+            {/* Section 2: About (Intro + Expertise HUD) */}
+            <section id="about" className="relative z-10 border-b border-white/10">
+              <AboutSection />
+            </section>
+            
+            {/* Section 3: Projects (Cards) */}
+            <section id="projects" className="relative z-10 border-b border-white/10">
+              <ProjectsSection />
+            </section>
 
-        {/* Tools Used Marquee */}
-        <ToolsMarquee />
-        
-        {/* Full Footer */}
-        <Footer />
+            {/* Section 4: Services */}
+            <section id="services" className="relative z-10 border-b border-white/10">
+              <ServicesSection />
+            </section>
+
+            {/* Section 5: Business */}
+            <section id="business" className="relative z-10 border-b border-white/10">
+              <BusinessSection />
+            </section>
+            
+            {/* Section 6: Contact (Phone Sequence) */}
+            <section id="contact" className="relative z-10">
+              <ContactSection />
+            </section>
+          </div>
+        </div>
       </div>
     </main>
   );

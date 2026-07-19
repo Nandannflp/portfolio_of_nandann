@@ -1,5 +1,29 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Orbitron';
+  src: url('/fonts/Orbitron-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BebasNeue';
+  src: url('/fonts/BebasNeue-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BlackOpsOne';
+  src: url('/fonts/BlackOpsOne-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: #121212;
   --foreground: #ffffff;
@@ -14,6 +38,15 @@
   --input: rgba(255, 255, 255, 0.12);
   --ring: #10b981;
   --ring-offset-background: #121212;
+  --font-cyberpunk: 'Orbitron', sans-serif;
+  --font-bebas: 'BebasNeue', sans-serif;
+  --font-blackops: 'BlackOpsOne', cursive;
+  
+  --cp-yellow: #FCEE0A;
+  --cp-cyan: #00F0FF;
+  --cp-red: #FF003C;
+  --cp-blue: #020A1F;
+  --cp-magenta: #FF00FF;
 }
 
 @theme inline {
@@ -30,6 +63,17 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-ring-offset-background: var(--ring-offset-background);
+  
+  --color-cp-yellow: var(--cp-yellow);
+  --color-cp-cyan: var(--cp-cyan);
+  --color-cp-red: var(--cp-red);
+  --color-cp-blue: var(--cp-blue);
+  --color-cp-magenta: var(--cp-magenta);
+  
+  --font-cyberpunk: var(--font-cyberpunk);
+  --font-bebas: var(--font-bebas);
+  --font-blackops: var(--font-blackops);
+  
   --font-sans: var(--font-inter);
   --font-alex-brush: var(--font-alex-brush);
 }
@@ -242,4 +286,96 @@ body {
   animation: border-flicker 3s infinite;
   border-width: 1px;
   border-style: solid;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Cyberpunk Styles
+─────────────────────────────────────────────────────────────*/
+.clip-button {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
+}
+.clip-button-reverse {
+  clip-path: polygon(15px 0, 100% 0, 100% 100%, 0 100%, 0 15px);
+}
+.clip-button-both {
+  clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+}
+.clip-image-left {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+}
+.clip-image-right {
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%);
+}
+.clip-videopunk {
+  clip-path: polygon(
+    10% 0%, 25% 0%, 25% 10%, 35% 10%, 35% 0%, 95% 0%,
+    100% 15%, 100% 35%, 95% 35%, 95% 45%, 100% 45%, 100% 85%,
+    90% 100%, 75% 100%, 75% 90%, 65% 90%, 65% 100%, 5% 100%,
+    0% 85%, 0% 55%, 5% 55%, 5% 45%, 0% 45%, 0% 15%
+  );
+}
+
+.glitch-text {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+.glitch-text::before {
+  left: 3px;
+  text-shadow: -2px 0 var(--cp-red);
+  animation: glitch-anim-1 2s infinite linear alternate-reverse;
+  z-index: -1;
+}
+
+.glitch-text::after {
+  left: -3px;
+  text-shadow: -2px 0 var(--cp-cyan);
+  animation: glitch-anim-2 2.5s infinite linear alternate-reverse;
+  z-index: -2;
+}
+
+@keyframes glitch-anim-1 {
+  0% { clip-path: inset(20% 0 80% 0); }
+  20% { clip-path: inset(60% 0 10% 0); }
+  40% { clip-path: inset(40% 0 50% 0); }
+  60% { clip-path: inset(80% 0 5% 0); }
+  80% { clip-path: inset(10% 0 70% 0); }
+  100% { clip-path: inset(30% 0 20% 0); }
+}
+
+@keyframes glitch-anim-2 {
+  0% { clip-path: inset(10% 0 60% 0); }
+  20% { clip-path: inset(30% 0 20% 0); }
+  40% { clip-path: inset(70% 0 10% 0); }
+  60% { clip-path: inset(20% 0 50% 0); }
+  80% { clip-path: inset(90% 0 5% 0); }
+  100% { clip-path: inset(50% 0 30% 0); }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Custom Cursors
+─────────────────────────────────────────────────────────────*/
+
+body, html {
+  cursor: url('/images/cursors/default.png') 0 0, auto !important;
+}
+
+a, button, [role="button"], input[type="submit"], input[type="button"], input[type="reset"], summary, .cursor-pointer, [href] {
+  cursor: url('/images/cursors/pointer.png') 12 0, pointer !important;
+}
+
+/* Ensure text selection still uses text cursor */
+p, h1, h2, h3, h4, h5, h6, span:not(.cursor-pointer) {
+  cursor: text;
 }

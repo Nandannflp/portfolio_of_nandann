@@ -5,6 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import SplashScreen from "@/components/SplashScreen";
 import { UserProvider } from "@/context/UserContext";
+import SmoothScroll from "@/components/SmoothScroll";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -52,7 +53,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark scroll-smooth" suppressHydrationWarning={true}>
+    <html lang="en" className="dark" suppressHydrationWarning={true}>
       <head>
         {/* Preload the very first animation frame so it's ready before JS executes (LCP boost) */}
         <link
@@ -75,8 +76,10 @@ export default function RootLayout({
         suppressHydrationWarning={true}
       >
         <UserProvider>
-          <SplashScreen />
-          {children}
+          <SmoothScroll>
+            <SplashScreen />
+            {children}
+          </SmoothScroll>
         </UserProvider>
         <Analytics />
         <SpeedInsights />

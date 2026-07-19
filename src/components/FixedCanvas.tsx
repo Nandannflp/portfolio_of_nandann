@@ -9,6 +9,18 @@ export default function FixedCanvas() {
   const imagesRef = useRef<(HTMLImageElement | null)[]>(new Array(120).fill(null));
   const [firstFrameReady, setFirstFrameReady] = useState(false);
   const { scrollYProgress } = useScroll();
+  const spotlightRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (spotlightRef.current) {
+        spotlightRef.current.style.setProperty('--x', `${e.clientX}px`);
+        spotlightRef.current.style.setProperty('--y', `${e.clientY}px`);
+      }
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   const frameCount = 120;
 
@@ -107,11 +119,14 @@ export default function FixedCanvas() {
         ref={canvasRef}
         className="w-full h-full object-cover opacity-100 transition-opacity duration-700"
       />
-      {/* Lightweight static overlays — NO backdrop-blur to avoid GPU compositing lag */}
-      <div className="absolute inset-0 bg-black/20 pointer-events-none"></div>
-      {/* Vignette overlay */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.25)_100%)] pointer-events-none"></div>
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-[#0a0a0a]/50 pointer-events-none"></div>
+      {/* Spotlight Overlay */}
+      <div 
+        ref={spotlightRef}
+        className="absolute inset-0 pointer-events-none transition-colors"
+        style={{
+          background: 'radial-gradient(circle 400px at var(--x, -1000px) var(--y, -1000px), rgba(0,0,0,0.1) 0%, black 100%)'
+        }}
+      ></div>
     </div>
   );
 }
