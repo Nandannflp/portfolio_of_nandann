@@ -263,6 +263,15 @@ body {
    Button Border Flicker Animation
 ─────────────────────────────────────────────────────────────*/
 
+@keyframes scroll-stripes {
+  0% { background-position: 0 0; }
+  100% { background-position: 28px 0; }
+}
+
+.animate-scroll-stripes {
+  animation: scroll-stripes 1s linear infinite;
+}
+
 @keyframes border-flicker {
   0%, 100% { 
     border-color: rgba(255, 255, 255, 0.8); 

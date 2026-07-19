@@ -131,7 +131,7 @@ export default function ComingSoon() {
            <div className="skew-x-[15deg]">
              <div className="text-cp-yellow text-[10px] tracking-widest font-bold mb-3 uppercase">INITIALIZING EXPERIENCE...</div>
              <div className="w-full h-3 bg-cp-yellow/20 overflow-hidden relative border border-cp-yellow/40">
-               <div className="absolute inset-0 bg-cp-yellow/50" 
+               <div className="absolute inset-0 bg-cp-yellow/50 animate-scroll-stripes" 
                     style={{
                       backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(255,211,0,1) 5px, rgba(255,211,0,1) 10px)',
                       width: '80%'
@@ -148,13 +148,20 @@ export default function ComingSoon() {
           </div>
           <div className="flex items-center gap-4">
             <div className="flex gap-1 h-4">
-              {Array.from({ length: 20 }).map((_, i) => (
-                <div key={i} className={`w-1.5 h-full ${i < (20 * loadingProgress) / 100 ? 'bg-cp-yellow shadow-[0_0_5px_rgba(255,211,0,0.8)]' : 'bg-gray-800'}`}></div>
-              ))}
+              {Array.from({ length: 20 }).map((_, i) => {
+                const isActive = i < (20 * loadingProgress) / 100;
+                return (
+                  <div 
+                    key={i} 
+                    className={`w-1.5 h-full transition-colors duration-300 ${isActive ? 'bg-cp-yellow shadow-[0_0_5px_rgba(255,211,0,0.8)]' : 'bg-gray-800'}`}
+                    style={isActive ? { animation: `pulse ${1 + (i % 3) * 0.5}s infinite ${i * 0.1}s` } : {}}
+                  ></div>
+                );
+              })}
             </div>
             <span className="text-cp-yellow text-xs font-bold w-8">{loadingProgress}%</span>
           </div>
-          <div className="text-gray-500 text-[10px] tracking-widest uppercase">
+          <div className="text-gray-500 text-[10px] tracking-widest uppercase animate-pulse">
             PLEASE STAND BY...
           </div>
         </div>
