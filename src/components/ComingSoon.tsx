@@ -26,12 +26,8 @@ export default function ComingSoon() {
           TOP NAVIGATION AREA
       ─────────────────────────────────────────────────────────────*/}
       <header className="flex justify-between items-start px-8 pt-8 w-full z-30">
-        {/* Hamburger Menu */}
-        <div className="flex flex-col gap-2 cursor-pointer group">
-          <div className="h-[2px] bg-cp-yellow w-8 group-hover:w-10 transition-all duration-300"></div>
-          <div className="h-[2px] bg-cp-yellow w-6 translate-x-2 group-hover:translate-x-0 group-hover:w-10 transition-all duration-300"></div>
-          <div className="h-[2px] bg-cp-yellow w-4 group-hover:w-10 transition-all duration-300"></div>
-        </div>
+        {/* Hamburger Menu (Removed) */}
+        <div className="w-8"></div>
 
         {/* Center Logo */}
         <div className="flex flex-col items-center text-center mt-[-10px]">
@@ -111,10 +107,12 @@ export default function ComingSoon() {
             <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-cp-yellow"></div>
             <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-cp-yellow"></div>
           </div>
-          <button className="relative bg-black/80 px-12 py-4 flex items-center gap-4 border-y border-cp-yellow/50 group-hover:bg-cp-yellow/10 transition-colors">
-            <span className="text-cp-yellow text-[10px]">&#9664;</span>
-            <span className="text-cp-yellow font-bold tracking-[0.4em] uppercase text-sm">LAUNCHING SOON</span>
-            <span className="text-cp-yellow text-[10px]">&#9654;</span>
+          <button className="relative bg-black/80 px-12 py-4 flex items-center gap-4 border border-cp-yellow/50 group-hover:bg-cp-yellow/10 transition-colors skew-x-[-15deg] outline-none">
+            <div className="flex items-center gap-4 skew-x-[15deg]">
+              <span className="text-cp-yellow text-[10px]">&#9664;</span>
+              <span className="text-cp-yellow font-bold tracking-[0.4em] uppercase text-sm">LAUNCHING SOON</span>
+              <span className="text-cp-yellow text-[10px]">&#9654;</span>
+            </div>
           </button>
         </div>
       </main>
