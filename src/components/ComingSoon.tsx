@@ -163,7 +163,7 @@ export default function ComingSoon() {
       {/* ─────────────────────────────────────────────────────────────
           FOOTER BAR
       ─────────────────────────────────────────────────────────────*/}
-      <footer className="absolute bottom-0 w-full h-12 bg-cp-yellow text-black flex justify-between items-center px-8 z-40">
+      <footer className="absolute bottom-0 w-full h-12 bg-cp-yellow text-black flex justify-between items-center px-8 z-40 shadow-[0_0_20px_rgba(255,255,0,0.6)]">
         <div className="flex-1"></div>
         <div className="flex-1 flex justify-center items-center font-bold tracking-[0.3em] uppercase text-sm cursor-pointer hover:bg-black hover:text-cp-yellow px-6 py-2 transition-colors">
           <span className="mr-2">v</span> NOTIFY ME
