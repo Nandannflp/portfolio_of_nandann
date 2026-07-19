@@ -261,14 +261,14 @@ export default function ComingSoon() {
                   animate={{ opacity: 1, scale: 1 }}
                   className="text-center py-8 relative z-10"
                 >
-                  <h3 className="text-cp-yellow font-cyberpunk text-xl tracking-widest mb-2"><span className="glitch-text" data-text="EMAIL SECURED">EMAIL SECURED</span></h3>
+                  <h3 className="text-cp-yellow font-cyberpunk text-xl tracking-widest mb-2"><span className="glitch-text" data-text="SUCCESS">SUCCESS</span></h3>
                   <p className="text-cp-yellow/70 font-mono text-sm uppercase">You will be notified upon system launch.</p>
                 </motion.div>
               ) : (
                 <form onSubmit={handleNotifySubmit} className="flex flex-col gap-6 relative z-10">
                   <div>
                     <h3 className="text-cp-yellow font-cyberpunk text-xl tracking-widest mb-2"><span className="glitch-text" data-text="STAY UPDATED">STAY UPDATED</span></h3>
-                    <p className="text-cp-yellow/70 font-mono text-xs uppercase tracking-wider">Enter your comm-link to receive launch notification.</p>
+                    <p className="text-cp-yellow/70 font-mono text-xs uppercase tracking-wider">Enter your email to receive a launch notification.</p>
                   </div>
                   
                   <input 
@@ -285,7 +285,7 @@ export default function ComingSoon() {
                     disabled={isSubmitting}
                     className="w-full bg-cp-yellow text-black font-cyberpunk py-3 tracking-widest hover:bg-white transition-colors disabled:opacity-50 outline-none relative overflow-hidden group"
                   >
-                    <span className="relative z-10">{isSubmitting ? 'PROCESSING...' : 'INITIATE PROTOCOL'}</span>
+                    <span className="relative z-10">{isSubmitting ? 'PROCESSING...' : 'SUBMIT'}</span>
                     <div className="absolute inset-0 bg-white translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300 ease-out z-0"></div>
                   </button>
                 </form>
