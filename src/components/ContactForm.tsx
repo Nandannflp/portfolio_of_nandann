@@ -8,7 +8,6 @@ export default function ContactForm() {
     name: '',
     email: '',
     service: '',
-    budget: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -37,7 +36,6 @@ export default function ContactForm() {
           name: '',
           email: '',
           service: '',
-          budget: '',
           message: ''
         });
       }, 3000);
@@ -51,10 +49,10 @@ export default function ContactForm() {
       
       <div className="max-w-4xl mx-auto relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-cyberpunk font-black uppercase tracking-widest text-cp-yellow mb-6 drop-shadow-[0_0_10px_rgba(252,238,10,0.6)]">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-cyberpunk font-black uppercase tracking-widest text-cp-yellow mb-6 drop-shadow-[0_0_10px_rgba(255,255,0,0.6)]">
             TRANSMIT SECURE DATA
           </h2>
-          <p className="font-mono text-sm md:text-base text-gray-400 uppercase tracking-widest max-w-2xl mx-auto">
+          <p className="font-mono text-sm md:text-base text-cp-yellow/80 uppercase tracking-widest max-w-2xl mx-auto">
             Ready to upgrade your digital ecosystem? Submit the form below for processing. Response estimated within 24 cycles.
           </p>
         </div>
@@ -70,13 +68,13 @@ export default function ContactForm() {
               animate={{ opacity: 1, scale: 1 }}
               className="text-center py-16"
             >
-              <div className="w-24 h-24 bg-cp-yellow/10 text-cp-yellow border-2 border-cp-yellow flex items-center justify-center mx-auto mb-6 shadow-[0_0_20px_rgba(252,238,10,0.5)]" style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 relative z-10 drop-shadow-[0_0_5px_rgba(252,238,10,1)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="w-24 h-24 bg-cp-yellow/10 text-cp-yellow border-2 border-cp-yellow flex items-center justify-center mx-auto mb-6 shadow-[0_0_20px_rgba(255,255,0,0.5)]" style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 relative z-10 drop-shadow-[0_0_5px_rgba(255,255,0,1)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="square" strokeLinejoin="miter" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h3 className="font-cyberpunk text-3xl tracking-widest text-cp-yellow mb-4 drop-shadow-[0_0_8px_rgba(252,238,10,0.8)]">TRANSMISSION SUCCESS</h3>
-              <p className="font-mono text-gray-400 text-sm uppercase tracking-widest">Data packet received. Standby for response.</p>
+              <h3 className="font-cyberpunk text-3xl tracking-widest text-cp-yellow mb-4 drop-shadow-[0_0_8px_rgba(255,255,0,0.8)]">TRANSMISSION SUCCESS</h3>
+              <p className="font-mono text-cp-yellow/80 text-sm uppercase tracking-widest">Data packet received. Standby for response.</p>
             </motion.div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -91,7 +89,7 @@ export default function ContactForm() {
                     suppressHydrationWarning={true}
                     value={formState.name}
                     onChange={handleChange}
-                    className="w-full bg-black/50 border border-cp-yellow/30 rounded-none px-4 py-3 font-mono text-white placeholder-gray-600 focus:outline-none focus:border-cp-yellow focus:ring-1 focus:ring-cp-yellow/50 transition-all shadow-[inset_0_0_10px_rgba(252,238,10,0.05)] focus:shadow-[inset_0_0_15px_rgba(252,238,10,0.15)]"
+                    className="w-full bg-black/50 border border-cp-yellow/30 rounded-none px-4 py-3 font-mono text-cp-yellow placeholder-cp-yellow/50 focus:outline-none focus:border-cp-yellow focus:ring-1 focus:ring-cp-yellow/50 transition-all shadow-[inset_0_0_10px_rgba(255,255,0,0.05)] focus:shadow-[inset_0_0_15px_rgba(255,255,0,0.15)]"
                     placeholder="Enter designation..."
                   />
                 </div>
@@ -105,45 +103,27 @@ export default function ContactForm() {
                     suppressHydrationWarning={true}
                     value={formState.email}
                     onChange={handleChange}
-                    className="w-full bg-black/50 border border-cp-yellow/30 rounded-none px-4 py-3 font-mono text-white placeholder-gray-600 focus:outline-none focus:border-cp-yellow focus:ring-1 focus:ring-cp-yellow/50 transition-all shadow-[inset_0_0_10px_rgba(252,238,10,0.05)] focus:shadow-[inset_0_0_15px_rgba(252,238,10,0.15)]"
+                    className="w-full bg-black/50 border border-cp-yellow/30 rounded-none px-4 py-3 font-mono text-cp-yellow placeholder-cp-yellow/50 focus:outline-none focus:border-cp-yellow focus:ring-1 focus:ring-cp-yellow/50 transition-all shadow-[inset_0_0_10px_rgba(255,255,0,0.05)] focus:shadow-[inset_0_0_15px_rgba(255,255,0,0.15)]"
                     placeholder="Enter email address..."
                   />
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label htmlFor="service" className="font-cyberpunk text-cp-yellow text-xs tracking-[0.2em] uppercase">Directive</label>
-                  <select 
-                    id="service" 
-                    name="service"
-                    value={formState.service}
-                    onChange={handleChange}
-                    className="w-full bg-black/50 border border-cp-yellow/30 rounded-none px-4 py-3 font-mono text-white focus:outline-none focus:border-cp-yellow focus:ring-1 focus:ring-cp-yellow/50 transition-all shadow-[inset_0_0_10px_rgba(252,238,10,0.05)] focus:shadow-[inset_0_0_15px_rgba(252,238,10,0.15)] appearance-none cursor-pointer"
-                  >
-                    <option value="" disabled className="bg-gray-900 text-gray-500 font-mono">Select directive...</option>
-                    <option value="AI Strategy" className="bg-gray-900 text-cp-yellow font-mono">AI Strategy</option>
-                    <option value="Website Design" className="bg-gray-900 text-cp-yellow font-mono">Website Design</option>
-                    <option value="Business Coaching" className="bg-gray-900 text-cp-yellow font-mono">Business Coaching</option>
-                    <option value="Other" className="bg-gray-900 text-cp-yellow font-mono">Other</option>
-                  </select>
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="budget" className="font-cyberpunk text-cp-yellow text-xs tracking-[0.2em] uppercase">Resource_Allocation</label>
-                  <select 
-                    id="budget" 
-                    name="budget"
-                    value={formState.budget}
-                    onChange={handleChange}
-                    className="w-full bg-black/50 border border-cp-yellow/30 rounded-none px-4 py-3 font-mono text-white focus:outline-none focus:border-cp-yellow focus:ring-1 focus:ring-cp-yellow/50 transition-all shadow-[inset_0_0_10px_rgba(252,238,10,0.05)] focus:shadow-[inset_0_0_15px_rgba(252,238,10,0.15)] appearance-none cursor-pointer"
-                  >
-                    <option value="" disabled className="bg-gray-900 text-gray-500 font-mono">Select resources...</option>
-                    <option value="Under ₹10K" className="bg-gray-900 text-cp-yellow font-mono">Under ₹10K</option>
-                    <option value="₹10K - ₹50K" className="bg-gray-900 text-cp-yellow font-mono">₹10K - ₹50K</option>
-                    <option value="₹50K+" className="bg-gray-900 text-cp-yellow font-mono">₹50K+</option>
-                    <option value="Let's discuss" className="bg-gray-900 text-cp-yellow font-mono">Awaiting parameters</option>
-                  </select>
-                </div>
+              <div className="space-y-2">
+                <label htmlFor="service" className="font-cyberpunk text-cp-yellow text-xs tracking-[0.2em] uppercase">Directive</label>
+                <select 
+                  id="service" 
+                  name="service"
+                  value={formState.service}
+                  onChange={handleChange}
+                  className="w-full bg-black/50 border border-cp-yellow/30 rounded-none px-4 py-3 font-mono text-cp-yellow focus:outline-none focus:border-cp-yellow focus:ring-1 focus:ring-cp-yellow/50 transition-all shadow-[inset_0_0_10px_rgba(255,255,0,0.05)] focus:shadow-[inset_0_0_15px_rgba(255,255,0,0.15)] appearance-none cursor-pointer"
+                >
+                  <option value="" disabled className="bg-gray-900 text-cp-yellow/50 font-mono">Select directive...</option>
+                  <option value="AI Strategy" className="bg-gray-900 text-cp-yellow font-mono">AI Strategy</option>
+                  <option value="Website Design" className="bg-gray-900 text-cp-yellow font-mono">Website Design</option>
+                  <option value="Business Coaching" className="bg-gray-900 text-cp-yellow font-mono">Business Coaching</option>
+                  <option value="Other" className="bg-gray-900 text-cp-yellow font-mono">Other</option>
+                </select>
               </div>
 
               <div className="space-y-2">
@@ -155,7 +135,7 @@ export default function ContactForm() {
                   required
                   value={formState.message}
                   onChange={handleChange}
-                  className="w-full bg-black/50 border border-cp-yellow/30 rounded-none px-4 py-3 font-mono text-white placeholder-gray-600 focus:outline-none focus:border-cp-yellow focus:ring-1 focus:ring-cp-yellow/50 transition-all shadow-[inset_0_0_10px_rgba(252,238,10,0.05)] focus:shadow-[inset_0_0_15px_rgba(252,238,10,0.15)] resize-none"
+                  className="w-full bg-black/50 border border-cp-yellow/30 rounded-none px-4 py-3 font-mono text-cp-yellow placeholder-cp-yellow/50 focus:outline-none focus:border-cp-yellow focus:ring-1 focus:ring-cp-yellow/50 transition-all shadow-[inset_0_0_10px_rgba(255,255,0,0.05)] focus:shadow-[inset_0_0_15px_rgba(255,255,0,0.15)] resize-none"
                   placeholder="Input mission details, objectives, and parameters here..."
                 ></textarea>
               </div>
@@ -163,7 +143,7 @@ export default function ContactForm() {
               <button 
                 type="submit" 
                 disabled={isSubmitting}
-                className="clip-button relative group w-full py-5 text-lg font-cyberpunk font-black text-black bg-cp-yellow hover:bg-white hover:text-black transition-all shadow-[0_0_20px_rgba(252,238,10,0.3)] hover:shadow-[0_0_30px_rgba(252,238,10,0.6)] disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center uppercase tracking-widest"
+                className="clip-button relative group w-full py-5 text-lg font-cyberpunk font-black text-black bg-cp-yellow hover:bg-white hover:text-black transition-all shadow-[0_0_20px_rgba(255,255,0,0.3)] hover:shadow-[0_0_30px_rgba(255,255,0,0.6)] disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center uppercase tracking-widest"
               >
                 {isSubmitting ? (
                   <span className="flex items-center gap-2 font-mono">
