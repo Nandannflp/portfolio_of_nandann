@@ -24,8 +24,14 @@ export default function ComingSoon() {
         body: JSON.stringify({ email }),
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error('Failed to submit');
+        throw new Error(data.details || data.error || 'Failed to submit');
+      }
+
+      if (data.simulated) {
+        alert("Warning: Vercel Environment Variable is missing! Simulating success for testing.");
       }
 
       setIsSuccess(true);
@@ -34,9 +40,9 @@ export default function ComingSoon() {
         setShowNotifyModal(false);
         setEmail('');
       }, 3000);
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
-      alert('Error submitting email. Please try again.');
+      alert(`Error submitting email: ${error.message || 'Please try again.'}`);
     } finally {
       setIsSubmitting(false);
     }

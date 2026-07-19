@@ -25,14 +25,15 @@ export async function POST(request: Request) {
     });
 
     if (!response.ok) {
-      throw new Error(`Google Apps Script responded with ${response.status}`);
+      const errorText = await response.text();
+      throw new Error(`Google Apps Script error ${response.status}: ${errorText.substring(0, 100)}`);
     }
 
     return NextResponse.json({ status: 'success' });
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error submitting to Google Sheets:', error);
     return NextResponse.json(
-      { error: 'Failed to submit email' },
+      { error: 'Failed to submit email', details: error.message },
       { status: 500 }
     );
   }
