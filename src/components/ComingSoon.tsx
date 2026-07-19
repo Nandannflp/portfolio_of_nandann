@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function ComingSoon() {
   const [loadingProgress, setLoadingProgress] = useState(0);
@@ -226,53 +227,74 @@ export default function ComingSoon() {
       {/* ─────────────────────────────────────────────────────────────
           NOTIFY MODAL
       ─────────────────────────────────────────────────────────────*/}
-      {showNotifyModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-          <div className="bg-black/90 border border-cp-yellow/50 p-8 max-w-md w-full relative shadow-[0_0_30px_rgba(255,255,0,0.2)]">
-            {/* Cyberpunk corner accents */}
-            <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-cp-yellow"></div>
-            <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-cp-yellow"></div>
-            
-            <button 
-              onClick={() => setShowNotifyModal(false)}
-              className="absolute top-4 right-4 text-cp-yellow/50 hover:text-cp-yellow transition-colors font-mono outline-none"
+      <AnimatePresence>
+        {showNotifyModal && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+          >
+            <motion.div 
+              initial={{ scale: 0.8, y: 50, opacity: 0, clipPath: 'inset(100% 0 0 0)' }}
+              animate={{ scale: 1, y: 0, opacity: 1, clipPath: 'inset(0% 0 0 0)' }}
+              exit={{ scale: 0.9, y: 20, opacity: 0, clipPath: 'inset(100% 0 0 0)' }}
+              transition={{ type: 'spring', damping: 20, stiffness: 100 }}
+              className="bg-black/90 border border-cp-yellow/50 p-8 max-w-md w-full relative shadow-[0_0_30px_rgba(255,255,0,0.2)]"
             >
-              [X]
-            </button>
+              {/* Cyberpunk corner accents */}
+              <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-cp-yellow"></div>
+              <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-cp-yellow"></div>
+              
+              {/* Scanline overlay */}
+              <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:100%_4px]"></div>
 
-            {isSuccess ? (
-              <div className="text-center py-8">
-                <h3 className="text-cp-yellow font-cyberpunk text-xl tracking-widest mb-2">EMAIL SECURED</h3>
-                <p className="text-cp-yellow/70 font-mono text-sm uppercase">You will be notified upon system launch.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleNotifySubmit} className="flex flex-col gap-6">
-                <div>
-                  <h3 className="text-cp-yellow font-cyberpunk text-xl tracking-widest mb-2">STAY UPDATED</h3>
-                  <p className="text-cp-yellow/70 font-mono text-xs uppercase tracking-wider">Enter your comm-link to receive launch notification.</p>
-                </div>
-                
-                <input 
-                  type="email" 
-                  required 
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="ENTER EMAIL ADDRESS..." 
-                  className="w-full bg-transparent border-b border-cp-yellow/30 p-2 font-mono text-cp-yellow placeholder-cp-yellow/30 focus:outline-none focus:border-cp-yellow focus:shadow-[0_4px_15px_-3px_rgba(255,255,0,0.3)] transition-all"
-                />
-                
-                <button 
-                  type="submit" 
-                  disabled={isSubmitting}
-                  className="w-full bg-cp-yellow text-black font-cyberpunk py-3 tracking-widest hover:bg-white transition-colors disabled:opacity-50 outline-none"
+              <button 
+                onClick={() => setShowNotifyModal(false)}
+                className="absolute top-4 right-4 text-cp-yellow/50 hover:text-cp-yellow transition-colors font-mono outline-none z-10"
+              >
+                [X]
+              </button>
+
+              {isSuccess ? (
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="text-center py-8 relative z-10"
                 >
-                  {isSubmitting ? 'PROCESSING...' : 'SUBMIT'}
-                </button>
-              </form>
-            )}
-          </div>
-        </div>
-      )}
+                  <h3 className="text-cp-yellow font-cyberpunk text-xl tracking-widest mb-2"><span className="glitch-text" data-text="EMAIL SECURED">EMAIL SECURED</span></h3>
+                  <p className="text-cp-yellow/70 font-mono text-sm uppercase">You will be notified upon system launch.</p>
+                </motion.div>
+              ) : (
+                <form onSubmit={handleNotifySubmit} className="flex flex-col gap-6 relative z-10">
+                  <div>
+                    <h3 className="text-cp-yellow font-cyberpunk text-xl tracking-widest mb-2"><span className="glitch-text" data-text="STAY UPDATED">STAY UPDATED</span></h3>
+                    <p className="text-cp-yellow/70 font-mono text-xs uppercase tracking-wider">Enter your comm-link to receive launch notification.</p>
+                  </div>
+                  
+                  <input 
+                    type="email" 
+                    required 
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="ENTER EMAIL ADDRESS..." 
+                    className="w-full bg-transparent border-b border-cp-yellow/30 p-2 font-mono text-cp-yellow placeholder-cp-yellow/30 focus:outline-none focus:border-cp-yellow focus:shadow-[0_4px_15px_-3px_rgba(255,255,0,0.3)] transition-all"
+                  />
+                  
+                  <button 
+                    type="submit" 
+                    disabled={isSubmitting}
+                    className="w-full bg-cp-yellow text-black font-cyberpunk py-3 tracking-widest hover:bg-white transition-colors disabled:opacity-50 outline-none relative overflow-hidden group"
+                  >
+                    <span className="relative z-10">{isSubmitting ? 'PROCESSING...' : 'INITIATE PROTOCOL'}</span>
+                    <div className="absolute inset-0 bg-white translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300 ease-out z-0"></div>
+                  </button>
+                </form>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
