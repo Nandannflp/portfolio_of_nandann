@@ -49,7 +49,7 @@ export default function ContactForm() {
       
       <div className="max-w-4xl mx-auto relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-cyberpunk font-black uppercase tracking-widest text-cp-yellow mb-6 drop-shadow-[0_0_10px_rgba(255,255,0,0.6)]">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-cyberpunk font-black uppercase tracking-widest text-cp-yellow mb-6 drop-shadow-[0_0_10px_rgba(254,232,1,0.6)]">
             TRANSMIT SECURE DATA
           </h2>
           <p className="font-mono text-sm md:text-base text-cp-yellow/80 uppercase tracking-widest max-w-2xl mx-auto">
@@ -68,12 +68,12 @@ export default function ContactForm() {
               animate={{ opacity: 1, scale: 1 }}
               className="text-center py-16"
             >
-              <div className="w-24 h-24 bg-cp-yellow/10 text-cp-yellow border-2 border-cp-yellow flex items-center justify-center mx-auto mb-6 shadow-[0_0_20px_rgba(255,255,0,0.5)]" style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 relative z-10 drop-shadow-[0_0_5px_rgba(255,255,0,1)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="w-24 h-24 bg-cp-yellow/10 text-cp-yellow border-2 border-cp-yellow flex items-center justify-center mx-auto mb-6 shadow-[0_0_20px_rgba(254,232,1,0.5)]" style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 relative z-10 drop-shadow-[0_0_5px_rgba(254,232,1,1)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="square" strokeLinejoin="miter" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h3 className="font-cyberpunk text-3xl tracking-widest text-cp-yellow mb-4 drop-shadow-[0_0_8px_rgba(255,255,0,0.8)]">TRANSMISSION SUCCESS</h3>
+              <h3 className="font-cyberpunk text-3xl tracking-widest text-cp-yellow mb-4 drop-shadow-[0_0_8px_rgba(254,232,1,0.8)]">TRANSMISSION SUCCESS</h3>
               <p className="font-mono text-cp-yellow/80 text-sm uppercase tracking-widest">Data packet received. Standby for response.</p>
             </motion.div>
           ) : (
@@ -89,7 +89,7 @@ export default function ContactForm() {
                     suppressHydrationWarning={true}
                     value={formState.name}
                     onChange={handleChange}
-                    className="w-full bg-black/50 border border-cp-yellow/30 rounded-none px-4 py-3 font-mono text-cp-yellow placeholder-cp-yellow/50 focus:outline-none focus:border-cp-yellow focus:ring-1 focus:ring-cp-yellow/50 transition-all shadow-[inset_0_0_10px_rgba(255,255,0,0.05)] focus:shadow-[inset_0_0_15px_rgba(255,255,0,0.15)]"
+                    className="w-full bg-black/50 border border-cp-yellow/30 rounded-none px-4 py-3 font-mono text-cp-yellow placeholder-cp-yellow/50 focus:outline-none focus:border-cp-yellow focus:ring-1 focus:ring-cp-yellow/50 transition-all shadow-[inset_0_0_10px_rgba(254,232,1,0.05)] focus:shadow-[inset_0_0_15px_rgba(254,232,1,0.15)]"
                     placeholder="Enter designation..."
                   />
                 </div>
@@ -103,7 +103,7 @@ export default function ContactForm() {
                     suppressHydrationWarning={true}
                     value={formState.email}
                     onChange={handleChange}
-                    className="w-full bg-black/50 border border-cp-yellow/30 rounded-none px-4 py-3 font-mono text-cp-yellow placeholder-cp-yellow/50 focus:outline-none focus:border-cp-yellow focus:ring-1 focus:ring-cp-yellow/50 transition-all shadow-[inset_0_0_10px_rgba(255,255,0,0.05)] focus:shadow-[inset_0_0_15px_rgba(255,255,0,0.15)]"
+                    className="w-full bg-black/50 border border-cp-yellow/30 rounded-none px-4 py-3 font-mono text-cp-yellow placeholder-cp-yellow/50 focus:outline-none focus:border-cp-yellow focus:ring-1 focus:ring-cp-yellow/50 transition-all shadow-[inset_0_0_10px_rgba(254,232,1,0.05)] focus:shadow-[inset_0_0_15px_rgba(254,232,1,0.15)]"
                     placeholder="Enter email address..."
                   />
                 </div>
@@ -116,7 +116,7 @@ export default function ContactForm() {
                   name="service"
                   value={formState.service}
                   onChange={handleChange}
-                  className="w-full bg-black/50 border border-cp-yellow/30 rounded-none px-4 py-3 font-mono text-cp-yellow focus:outline-none focus:border-cp-yellow focus:ring-1 focus:ring-cp-yellow/50 transition-all shadow-[inset_0_0_10px_rgba(255,255,0,0.05)] focus:shadow-[inset_0_0_15px_rgba(255,255,0,0.15)] appearance-none cursor-pointer"
+                  className="w-full bg-black/50 border border-cp-yellow/30 rounded-none px-4 py-3 font-mono text-cp-yellow focus:outline-none focus:border-cp-yellow focus:ring-1 focus:ring-cp-yellow/50 transition-all shadow-[inset_0_0_10px_rgba(254,232,1,0.05)] focus:shadow-[inset_0_0_15px_rgba(254,232,1,0.15)] appearance-none cursor-pointer"
                 >
                   <option value="" disabled className="bg-gray-900 text-cp-yellow/50 font-mono">Select directive...</option>
                   <option value="AI Strategy" className="bg-gray-900 text-cp-yellow font-mono">AI Strategy</option>
@@ -135,7 +135,7 @@ export default function ContactForm() {
                   required
                   value={formState.message}
                   onChange={handleChange}
-                  className="w-full bg-black/50 border border-cp-yellow/30 rounded-none px-4 py-3 font-mono text-cp-yellow placeholder-cp-yellow/50 focus:outline-none focus:border-cp-yellow focus:ring-1 focus:ring-cp-yellow/50 transition-all shadow-[inset_0_0_10px_rgba(255,255,0,0.05)] focus:shadow-[inset_0_0_15px_rgba(255,255,0,0.15)] resize-none"
+                  className="w-full bg-black/50 border border-cp-yellow/30 rounded-none px-4 py-3 font-mono text-cp-yellow placeholder-cp-yellow/50 focus:outline-none focus:border-cp-yellow focus:ring-1 focus:ring-cp-yellow/50 transition-all shadow-[inset_0_0_10px_rgba(254,232,1,0.05)] focus:shadow-[inset_0_0_15px_rgba(254,232,1,0.15)] resize-none"
                   placeholder="Input mission details, objectives, and parameters here..."
                 ></textarea>
               </div>
@@ -143,7 +143,7 @@ export default function ContactForm() {
               <button 
                 type="submit" 
                 disabled={isSubmitting}
-                className="clip-button relative group w-full py-5 text-lg font-cyberpunk font-black text-black bg-cp-yellow hover:bg-white hover:text-black transition-all shadow-[0_0_20px_rgba(255,255,0,0.3)] hover:shadow-[0_0_30px_rgba(255,255,0,0.6)] disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center uppercase tracking-widest"
+                className="clip-button relative group w-full py-5 text-lg font-cyberpunk font-black text-black bg-cp-yellow hover:bg-white hover:text-black transition-all shadow-[0_0_20px_rgba(254,232,1,0.3)] hover:shadow-[0_0_30px_rgba(254,232,1,0.6)] disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center uppercase tracking-widest"
               >
                 {isSubmitting ? (
                   <span className="flex items-center gap-2 font-mono">
