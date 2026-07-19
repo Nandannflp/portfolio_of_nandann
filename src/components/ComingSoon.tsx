@@ -233,12 +233,12 @@ export default function ComingSoon() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+            className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
           >
             <motion.div 
-              initial={{ scale: 0.8, y: 50, opacity: 0, clipPath: 'inset(100% 0 0 0)' }}
-              animate={{ scale: 1, y: 0, opacity: 1, clipPath: 'inset(0% 0 0 0)' }}
-              exit={{ scale: 0.9, y: 20, opacity: 0, clipPath: 'inset(100% 0 0 0)' }}
+              initial={{ scale: 0.8, y: 50, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.9, y: 20, opacity: 0 }}
               transition={{ type: 'spring', damping: 20, stiffness: 100 }}
               className="bg-black/90 border border-cp-yellow/50 p-8 max-w-md w-full relative shadow-[0_0_30px_rgba(255,255,0,0.2)]"
             >
